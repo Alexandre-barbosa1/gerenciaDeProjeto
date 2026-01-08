@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lagarto em Ação: O Cotidiano de Quem Faz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1a3a1a;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #2c5f2d;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            color: #2c5f2d;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #97bc62;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 95, 45, 0.8), rgba(44, 95, 45, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23f0f0f0" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 10px;
+        }
+
+        .hero h2 {
+            color: white;
+            border: none;
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #97bc62 0%, #2c5f2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            color: #2c5f2d;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card-content p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content .meta {
+            color: #999;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #97bc62 0%, #2c5f2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item span {
+            color: white;
+            font-size: 3rem;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* About Section */
+        .about-content {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid #2c5f2d;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .team-member-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .team-member h4 {
+            color: #2c5f2d;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-member p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a3a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #97bc62;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav a {
+                padding: 0.8rem;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .cards-grid,
+            .gallery-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Placeholder styling */
+        .placeholder-text {
+            background: #fff3cd;
+            border: 2px dashed #ffc107;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            text-align: center;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🌾 Lagarto em Ação</h1>
+            <p class="subtitle">O Cotidiano de Quem Faz</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#gastronomia">Gastronomia</a></li>
+            <li><a href="#artesanato">Artesanato</a></li>
+            <li><a href="#historias">Histórias de Vida</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#sobre">Sobre o Projeto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio">
+            <div class="hero">
+                <h2>Gente que Cria, Movimenta e Trabalha</h2>
+                <p>Conheça as histórias, os saberes e o trabalho diário das pessoas que constroem a identidade cultural de Lagarto, Sergipe. Um projeto de valorização da memória local e dos protagonistas da nossa cidade.</p>
+            </div>
+        </section>
+
+        <!-- Gastronomia Section -->
+        <section id="gastronomia">
+            <h2>🍲 Gastronomia</h2>
+            <p>Os sabores que contam histórias. Conheça as cozinheiras e produtores que preservam a culinária tradicional lagartense.</p>
+            
+            <div class="placeholder-text">
+                📸 <strong>Área para inserir conteúdo coletado:</strong> Adicione aqui as fotos e entrevistas dos profissionais da gastronomia local
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-image">🥘</div>
+                    <div class="card-content">
+                        <h3>[Nome do Personagem]</h3>
+                        <p><strong>Especialidade:</strong> [Comida típica ou produto]</p>
+                        <p>[Breve descrição da história e do trabalho desenvolvido...]</p>
+                        <p class="meta">Tempo de experiência: [X anos]</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">🍰</div>
+                    <div class="card-content">
+                        <h3>[Nome do Personagem]</h3>
+                        <p><strong>Especialidade:</strong> [Comida típica ou produto]</p>
+                        <p>[Breve descrição da história e do trabalho desenvolvido...]</p>
+                        <p class="meta">Tempo de experiência: [X anos]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Artesanato Section -->
+        <section id="artesanato">
+            <h2>🎨 Artesanato</h2>
+            <p>O trabalho manual que preserva tradições. Conheça os artesãos que transformam barro, tecido e madeira em arte.</p>
+            
+            <div class="placeholder-text">
+                📸 <strong>Área para inserir conteúdo coletado:</strong> Adicione aqui as fotos e entrevistas dos artesãos locais
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-image">🏺</div>
+                    <div class="card-content">
+                        <h3>[Nome do Artesão]</h3>
+                        <p><strong>Técnica:</strong> [Tipo de artesanato: barro/tecido/madeira]</p>
+                        <p>[Breve descrição da história, técnica utilizada e produtos criados...]</p>
+                        <p class="meta">Tradição familiar: [Gerações ou anos]</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">🧵</div>
+                    <div class="card-content">
+                        <h3>[Nome do Artesão]</h3>
+                        <p><strong>Técnica:</strong> [Tipo de artesanato: barro/tecido/madeira]</p>
+                        <p>[Breve descrição da história, técnica utilizada e produtos criados...]</p>
+                        <p class="meta">Tradição familiar: [Gerações ou anos]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Histórias de Vida Section -->
+        <section id="historias">
+            <h2>📖 Histórias de Vida</h2>
+            <p>Trajetórias que inspiram. Conheça trabalhadores antigos da cidade e suas memórias sobre Lagarto.</p>
+            
+            <div class="placeholder-text">
+                📸 <strong>Área para inserir conteúdo coletado:</strong> Adicione aqui as fotos e entrevistas completas
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-image">👤</div>
+                    <div class="card-content">
+                        <h3>[Nome do Trabalhador]</h3>
+                        <p><strong>Profissão:</strong> [Ocupação atual ou anterior]</p>
+                        <p>[Trecho da história de vida, desafios superados, contribuição para a cidade...]</p>
+                        <p class="meta">Nascido em Lagarto há [X anos]</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">👤</div>
+                    <div class="card-content">
+                        <h3>[Nome do Trabalhador]</h3>
+                        <p><strong>Profissão:</strong> [Ocupação atual ou anterior]</p>
+                        <p>[Trecho da história de vida, desafios superados, contribuição para a cidade...]</p>
+                        <p class="meta">Nascido em Lagarto há [X anos]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeria Section -->
+        <section id="galeria">
+            <h2>📷 Galeria</h2>
+            <p>Acervo visual do cotidiano lagartense. Fotografias autorais que registram o trabalho e a cultura local.</p>
+            
+            <div class="placeholder-text">
+                📸 <strong>Área para inserir fotos:</strong> Mínimo de 10 fotografias autorais em alta resolução
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <span>📷</span>
+                    <div class="gallery-caption">
+                        <p>[Legenda da foto 1]</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <span>📷</span>
+                    <div class="gallery-caption">
+                        <p>[Legenda da foto 2]</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <span>📷</span>
+                    <div class="gallery-caption">
+                        <p>[Legenda da foto 3]</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <span>📷</span>
+                    <div class="gallery-caption">
+                        <p>[Legenda da foto 4]</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <span>📷</span>
+                    <div class="gallery-caption">
+                        <p>[Legenda da foto 5]</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <span>📷</span>
+                    <div class="gallery-caption">
+                        <p>[Legenda da foto 6]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre o Projeto Section -->
+        <section id="sobre">
+            <h2>ℹ️ Sobre o Projeto</h2>
+            <div class="about-content">
+                <p><strong>Lagarto em Ação: O Cotidiano de Quem Faz</strong> é um projeto desenvolvido na disciplina de Gerência de Projetos do Instituto Federal de Sergipe (IFS) que busca valorizar e documentar o cotidiano dos trabalhadores, artesãos e agentes culturais da cidade de Lagarto, Sergipe.</p>
+                
+                <p>A iniciativa nasce da necessidade de reconhecer e preservar a memória local através de um acervo digital 100% autoral, incluindo fotografias e textos inéditos que capturam a essência dos protagonistas que constroem diariamente a identidade cultural do município.</p>
+                
+                <p>O projeto compromete-se com a ética na abordagem da comunidade, respeitando integralmente a LGPD e o ECA, garantindo que todas as pessoas retratadas autorizem o uso de sua imagem e voz através de termos específicos.</p>
+
+                <h3 style="color: #2c5f2d; margin-top: 2rem; margin-bottom: 1rem;">🎯 Objetivos</h3>
+                <p>• Documentar e valorizar o trabalho de profissionais locais</p>
+                <p>• Criar uma vitrine digital para artesãos e pequenos produtores</p>
+                <p>• Preservar a memória e identidade cultural de Lagarto</p>
+                <p>• Fortalecer o sentimento de pertencimento da comunidade</p>
+
+                <h3 style="color: #2c5f2d; margin-top: 2rem; margin-bottom: 1rem;">👥 Equipe</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-member-icon">JA</div>
+                        <h4>José Alexandre</h4>
+                        <p>Gerente do Projeto</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-icon">AR</div>
+                        <h4>Arthur Ribeiro</h4>
+                        <p>Desenvolvedor</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-icon">GS</div>
+                        <h4>Guilherme Silva</h4>
+                        <p>Desenvolvedor</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-icon">LE</div>
+                        <h4>Luis Eduardo</h4>
+                        <p>Desenvolvedor</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-icon">RP</div>
+                        <h4>Rauan Phelipe</h4>
+                        <p>Desenvolvedor</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-icon">VS</div>
+                        <h4>Victor Silva</h4>
+                        <p>Desenvolvedor</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 2rem;"><strong>Orientação:</strong> Profª. Rosana Rocha Siqueira</p>
+                <p><strong>Instituição:</strong> Instituto Federal de Sergipe - Campus Lagarto</p>
+                <p><strong>Período:</strong> 2025/2026</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Lagarto em Ação: O Cotidiano de Quem Faz</strong></p>
+        <p>Um projeto do Instituto Federal de Sergipe</p>
+        <p>© 2025-2026 | Todos os direitos reservados</p>
+        <div class="footer-links">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="https://www.ifs.edu.br" target="_blank">IFS</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Destaque do menu ativo
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
