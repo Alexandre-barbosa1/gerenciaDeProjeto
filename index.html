@@ -122,6 +122,133 @@
             line-height: 1.8;
         }
 
+        /* Feature Card - Layout Lado a Lado */
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 45% 55%;
+            min-height: 500px;
+        }
+
+        .feature-card-image {
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .feature-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .feature-card-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feature-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+            flex-shrink: 0;
+        }
+
+        .feature-card h3 {
+            color: #2c5f2d;
+            font-size: 2rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .feature-card .specialty {
+            color: #dc2626;
+            font-weight: 600;
+            margin: 0.3rem 0 0 0;
+            font-size: 1.1rem;
+        }
+
+        .feature-card-description {
+            border-left: 4px solid #2c5f2d;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-card-description p {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-card-secondary-image {
+            margin: 1.5rem 0;
+        }
+
+        .feature-card-secondary-image img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .feature-stat {
+            flex: 1;
+        }
+
+        .feature-stat-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-stat-label span {
+            font-size: 1.5rem;
+        }
+
+        .feature-stat-label strong {
+            color: #2c5f2d;
+        }
+
+        .feature-stat-value {
+            color: #666;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
         /* Cards Grid */
         .cards-grid {
             display: grid;
@@ -308,7 +435,7 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
             h1 {
                 font-size: 2rem;
             }
@@ -324,6 +451,14 @@
 
             .hero {
                 padding: 2rem 1rem;
+            }
+
+            .feature-card {
+                grid-template-columns: 1fr !important;
+            }
+
+            .feature-card-content {
+                padding: 2rem !important;
             }
 
             .cards-grid,
@@ -356,7 +491,7 @@
     <nav>
         <ul>
             <li><a href="#inicio">Início</a></li>
-            <li><a href="#gastronomia">Gastronomia</a></li>
+            <li><a href="#tecnologia">Tecnologia</a></li>
             <li><a href="#artesanato">Artesanato</a></li>
             <li><a href="#historias">Histórias de Vida</a></li>
             <li><a href="#galeria">Galeria</a></li>
@@ -373,33 +508,46 @@
             </div>
         </section>
 
-        <!-- Gastronomia Section -->
-        <section id="gastronomia">
-            <h2>🍲 Gastronomia</h2>
-            <p>Os sabores que contam histórias. Conheça as cozinheiras e produtores que preservam a culinária tradicional lagartense.</p>
-            
-            <div class="placeholder-text">
-                📸 <strong>Área para inserir conteúdo coletado:</strong> Adicione aqui as fotos e entrevistas dos profissionais da gastronomia local
-            </div>
+        <!-- Tecnologia Section -->
+        <section id="tecnologia">
+            <h2>💻 Tecnologia</h2>
+            <h4>Inovação e soluções digitais. Conheça os empreendedores que levam tecnologia e modernidade para Lagarto.</h4>
 
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-image">🥘</div>
-                    <div class="card-content">
-                        <h3>[Nome do Personagem]</h3>
-                        <p><strong>Especialidade:</strong> [Comida típica ou produto]</p>
-                        <p>[Breve descrição da história e do trabalho desenvolvido...]</p>
-                        <p class="meta">Tempo de experiência: [X anos]</p>
-                    </div>
+            <div class="feature-card">
+                <!-- Foto Grande à Esquerda -->
+                <div class="feature-card-image">
+                    <img src="images/jamsoft.png" alt="Jamsoft Tecnologia - Fachada">
                 </div>
-
-                <div class="card">
-                    <div class="card-image">🍰</div>
-                    <div class="card-content">
-                        <h3>[Nome do Personagem]</h3>
-                        <p><strong>Especialidade:</strong> [Comida típica ou produto]</p>
-                        <p>[Breve descrição da história e do trabalho desenvolvido...]</p>
-                        <p class="meta">Tempo de experiência: [X anos]</p>
+                
+                <!-- Conteúdo à Direita -->
+                <div class="feature-card-content">
+                    <div class="feature-card-header">
+                        <div class="feature-card-icon">💻</div>
+                        <div>
+                            <h3>Jamsoft Tecnologia</h3>
+                            <p class="specialty">Sistemas Empresariais e Informática</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card-description">
+                        <p>O negócio surgiu a partir da <strong style="color: #2c5f2d;">paixão pelo ramo da tecnologia</strong> e da crença de que a venda de soluções vai além do produto, pois abre portas, cria oportunidades e constrói relacionamentos.</p>
+                        <p>O início foi marcado por dedicação, aprendizado constante e pelo compromisso em oferecer sempre um atendimento de qualidade.</p>
+                    </div>
+                    <div class="feature-card-stats">
+                        <div class="feature-stat">
+                            <div class="feature-stat-label">
+                                <span>📅</span>
+                                <strong>Experiência</strong>
+                            </div>
+                            <p class="feature-stat-value">22 anos no bairro</p>
+                        </div>
+                        <div class="feature-stat">
+                            <div class="feature-stat-label">
+                                <span>🏆</span>
+                                <strong>Referência</strong>
+                            </div>
+                            <p class="feature-stat-value">Tecnologia em Lagarto</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -409,7 +557,7 @@
         <section id="artesanato">
             <h2>🎨 Artesanato</h2>
             <p>O trabalho manual que preserva tradições. Conheça os artesãos que transformam barro, tecido e madeira em arte.</p>
-            
+
             <div class="placeholder-text">
                 📸 <strong>Área para inserir conteúdo coletado:</strong> Adicione aqui as fotos e entrevistas dos artesãos locais
             </div>
@@ -441,7 +589,7 @@
         <section id="historias">
             <h2>📖 Histórias de Vida</h2>
             <p>Trajetórias que inspiram. Conheça trabalhadores antigos da cidade e suas memórias sobre Lagarto.</p>
-            
+
             <div class="placeholder-text">
                 📸 <strong>Área para inserir conteúdo coletado:</strong> Adicione aqui as fotos e entrevistas completas
             </div>
@@ -473,7 +621,7 @@
         <section id="galeria">
             <h2>📷 Galeria</h2>
             <p>Acervo visual do cotidiano lagartense. Fotografias autorais que registram o trabalho e a cultura local.</p>
-            
+
             <div class="placeholder-text">
                 📸 <strong>Área para inserir fotos:</strong> Mínimo de 10 fotografias autorais em alta resolução
             </div>
@@ -523,9 +671,9 @@
             <h2>ℹ️ Sobre o Projeto</h2>
             <div class="about-content">
                 <p><strong>Lagarto em Ação: O Cotidiano de Quem Faz</strong> é um projeto desenvolvido na disciplina de Gerência de Projetos do Instituto Federal de Sergipe (IFS) que busca valorizar e documentar o cotidiano dos trabalhadores, artesãos e agentes culturais da cidade de Lagarto, Sergipe.</p>
-                
+
                 <p>A iniciativa nasce da necessidade de reconhecer e preservar a memória local através de um acervo digital 100% autoral, incluindo fotografias e textos inéditos que capturam a essência dos protagonistas que constroem diariamente a identidade cultural do município.</p>
-                
+
                 <p>O projeto compromete-se com a ética na abordagem da comunidade, respeitando integralmente a LGPD e o ECA, garantindo que todas as pessoas retratadas autorizem o uso de sua imagem e voz através de termos específicos.</p>
 
                 <h3 style="color: #2c5f2d; margin-top: 2rem; margin-bottom: 1rem;">🎯 Objetivos</h3>
@@ -605,7 +753,7 @@
         window.addEventListener('scroll', () => {
             let current = '';
             const sections = document.querySelectorAll('section');
-            
+
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 if (pageYOffset >= sectionTop - 100) {
