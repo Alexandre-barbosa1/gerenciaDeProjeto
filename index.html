@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,18 +12,36 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --verde-lagarto: #2c5f2d;
+            --verde-claro: #97bc62;
+            --terra: #8b4513;
+            --laranja: #ff8c42;
+            --azul: #1e40af;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
         }
 
-        /* Header */
         header {
-            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            background: linear-gradient(135deg, var(--verde-lagarto) 0%, var(--verde-claro) 100%);
             color: white;
             padding: 2rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '🌾';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            right: -2rem;
+            top: -4rem;
         }
 
         .header-content {
@@ -30,25 +49,37 @@
             margin: 0 auto;
             padding: 0 20px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 0.5rem;
         }
 
-        /* Navigation */
+        .city-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
         nav {
             background: #1a3a1a;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         nav ul {
@@ -60,24 +91,19 @@
             margin: 0 auto;
         }
 
-        nav li {
-            margin: 0;
-        }
-
         nav a {
             display: block;
             color: white;
             text-decoration: none;
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
             transition: background 0.3s;
             font-weight: 500;
         }
 
         nav a:hover {
-            background: #2c5f2d;
+            background: var(--verde-lagarto);
         }
 
-        /* Main Content */
         main {
             max-width: 1200px;
             margin: 0 auto;
@@ -89,24 +115,21 @@
         }
 
         h2 {
-            color: #2c5f2d;
+            color: var(--verde-lagarto);
             font-size: 2rem;
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            border-bottom: 3px solid #97bc62;
+            border-bottom: 3px solid var(--verde-claro);
         }
 
-        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(44, 95, 45, 0.8), rgba(44, 95, 45, 0.8)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23f0f0f0" width="1200" height="400"/></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(rgba(44, 95, 45, 0.85), rgba(44, 95, 45, 0.85));
             color: white;
             padding: 4rem 2rem;
             text-align: center;
             margin-bottom: 3rem;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
         .hero h2 {
@@ -122,45 +145,201 @@
             line-height: 1.8;
         }
 
-        /* Feature Card - Layout Lado a Lado */
+        .lagarto-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .lagarto-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--verde-lagarto);
+        }
+
+        .lagarto-card.orange {
+            border-left-color: var(--laranja);
+        }
+
+        .lagarto-card h3 {
+            color: var(--verde-lagarto);
+            margin-bottom: 1rem;
+        }
+
+        .lagarto-card.orange h3 {
+            color: var(--laranja);
+        }
+
+        .lagarto-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .lagarto-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--verde-lagarto) 0%, var(--verde-claro) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(44, 95, 45, 0.3);
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .highlight-item .icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .highlight-item h3 {
+            color: var(--verde-lagarto);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .highlight-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .methodology {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 5px solid var(--azul);
+        }
+
+        .methodology h3 {
+            color: var(--azul);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .methodology p {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .methodology-grid>div {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .methodology-grid .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .methodology-grid h4 {
+            color: var(--verde-lagarto);
+            margin-bottom: 0.5rem;
+        }
+
+        .methodology-grid p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
         .feature-card {
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
             margin-bottom: 2rem;
             display: grid;
             grid-template-columns: 45% 55%;
             min-height: 500px;
         }
 
-        .feature-card-image {
+        .feature-image {
             background: #f5f5f5;
             overflow: hidden;
+            position: relative;
         }
 
-        .feature-card-image img {
+        .feature-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
         }
 
-        .feature-card-content {
+        .photo-credit {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .photo-credit .title {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .photo-credit .details {
+            opacity: 0.9;
+            font-size: 0.8rem;
+        }
+
+        .feature-content {
             padding: 3rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .feature-card-header {
+        .feature-content .header {
             display: flex;
             align-items: center;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
 
-        .feature-card-icon {
+        .feature-content .icon {
             width: 70px;
             height: 70px;
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
@@ -173,50 +352,38 @@
             flex-shrink: 0;
         }
 
-        .feature-card h3 {
-            color: #2c5f2d;
+        .feature-content .icon.red {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+
+        .feature-content h3 {
+            color: var(--verde-lagarto);
             font-size: 2rem;
             margin: 0;
             line-height: 1.2;
         }
 
-        .feature-card .specialty {
+        .feature-content .specialty {
             color: #dc2626;
             font-weight: 600;
             margin: 0.3rem 0 0 0;
             font-size: 1.1rem;
         }
 
-        .feature-card-description {
-            border-left: 4px solid #2c5f2d;
+        .feature-content .description {
+            border-left: 4px solid var(--verde-lagarto);
             padding-left: 1.5rem;
             margin: 1.5rem 0;
         }
 
-        .feature-card-description p {
+        .feature-content .description p {
             color: #555;
             font-size: 1.05rem;
             line-height: 1.8;
             margin-bottom: 1rem;
         }
 
-        .feature-card-description p:last-child {
-            margin-bottom: 0;
-        }
-
-        .feature-card-secondary-image {
-            margin: 1.5rem 0;
-        }
-
-        .feature-card-secondary-image img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .feature-card-stats {
+        .feature-content .stats {
             display: flex;
             gap: 2rem;
             margin-top: 1.5rem;
@@ -224,136 +391,179 @@
             border-top: 2px solid #f0f0f0;
         }
 
-        .feature-stat {
-            flex: 1;
-        }
-
-        .feature-stat-label {
+        .feature-content .stats div {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.5rem;
         }
 
-        .feature-stat-label span {
+        .feature-content .stats span {
             font-size: 1.5rem;
         }
 
-        .feature-stat-label strong {
-            color: #2c5f2d;
+        .feature-content .stats strong {
+            color: var(--verde-lagarto);
         }
 
-        .feature-stat-value {
+        .story {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2.5rem;
+        }
+
+        .story.green {
+            border-left: 5px solid var(--verde-lagarto);
+        }
+
+        .story.blue {
+            border-left: 5px solid var(--azul);
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-header .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .story.green .icon {
+            background: linear-gradient(135deg, var(--verde-lagarto) 0%, var(--verde-claro) 100%);
+        }
+
+        .story.blue .icon {
+            background: linear-gradient(135deg, var(--azul) 0%, #3b82f6 100%);
+        }
+
+        .story-header h3 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .story.green h3 {
+            color: var(--verde-lagarto);
+        }
+
+        .story.blue h3 {
+            color: var(--azul);
+        }
+
+        .story-header p {
             color: #666;
             margin: 0;
             font-size: 1.1rem;
         }
 
-        /* Cards Grid */
-        .cards-grid {
+        .story-content {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .story-content p {
+            margin-bottom: 1rem;
+        }
+
+        .story-content .quote {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .story.blue .quote {
+            background: #eff6ff;
+        }
+
+        .story-content .highlight {
+            font-weight: 600;
+        }
+
+        .story.green .highlight {
+            color: var(--verde-lagarto);
+        }
+
+        .story.blue .highlight {
+            color: var(--azul);
+        }
+
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        .card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #97bc62 0%, #2c5f2d 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card-content h3 {
-            color: #2c5f2d;
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-
-        .card-content p {
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-content .meta {
-            color: #999;
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-
-        /* Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, #97bc62 0%, #2c5f2d 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            border-radius: 15px;
+            aspect-ratio: 4/3;
+            background: #f5f5f5;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
         }
 
         .gallery-item:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .gallery-item span {
+        .gallery-item .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--verde-claro) 0%, var(--verde-lagarto) 100%);
             color: white;
-            font-size: 3rem;
+            font-size: 4rem;
         }
 
-        .gallery-caption {
+        .gallery-item .caption {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.85);
             color: white;
-            padding: 1rem;
+            padding: 1.2rem;
             transform: translateY(100%);
             transition: transform 0.3s;
         }
 
-        .gallery-item:hover .gallery-caption {
+        .gallery-item:hover .caption {
             transform: translateY(0);
         }
 
-        /* About Section */
+        .gallery-item .caption .title {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .gallery-item .caption .credit {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
         .about-content {
             background: #f9f9f9;
             padding: 2rem;
-            border-radius: 10px;
-            border-left: 5px solid #2c5f2d;
+            border-radius: 15px;
+            border-left: 5px solid var(--verde-lagarto);
         }
 
         .about-content p {
@@ -361,7 +571,36 @@
             text-align: justify;
         }
 
-        /* Team Section */
+        .about-content h3 {
+            color: var(--verde-lagarto);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .campus-photo {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--verde-lagarto) 0%, var(--verde-claro) 100%);
+            border-radius: 15px;
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .campus-label {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -373,20 +612,20 @@
             text-align: center;
             padding: 1.5rem;
             background: #f9f9f9;
-            border-radius: 10px;
+            border-radius: 15px;
             transition: transform 0.3s;
         }
 
         .team-member:hover {
             transform: translateY(-5px);
             background: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .team-member-icon {
+        .team-member .icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            background: linear-gradient(135deg, var(--verde-lagarto) 0%, var(--verde-claro) 100%);
             border-radius: 50%;
             margin: 0 auto 1rem;
             display: flex;
@@ -398,7 +637,7 @@
         }
 
         .team-member h4 {
-            color: #2c5f2d;
+            color: var(--verde-lagarto);
             margin-bottom: 0.3rem;
         }
 
@@ -407,7 +646,6 @@
             font-size: 0.9rem;
         }
 
-        /* Footer */
         footer {
             background: #1a3a1a;
             color: white;
@@ -425,7 +663,7 @@
         }
 
         .footer-links a {
-            color: #97bc62;
+            color: var(--verde-claro);
             text-decoration: none;
             margin: 0 1rem;
         }
@@ -434,7 +672,6 @@
             text-decoration: underline;
         }
 
-        /* Responsive */
         @media (max-width: 968px) {
             h1 {
                 font-size: 2rem;
@@ -453,44 +690,81 @@
                 padding: 2rem 1rem;
             }
 
-            .feature-card {
-                grid-template-columns: 1fr !important;
-            }
-
-            .feature-card-content {
-                padding: 2rem !important;
-            }
-
-            .cards-grid,
+            .lagarto-intro,
+            .lagarto-stats,
+            .highlights,
+            .methodology-grid,
+            .feature-card,
             .gallery-grid,
             .team-grid {
                 grid-template-columns: 1fr;
             }
+
+            .feature-content {
+                padding: 2rem !important;
+            }
         }
 
-        /* Placeholder styling */
-        .placeholder-text {
-            background: #fff3cd;
-            border: 2px dashed #ffc107;
-            padding: 1rem;
-            border-radius: 5px;
-            margin: 1rem 0;
+        /* Adicione isso ao final do seu CSS */
+
+        .footer-logo {
+            margin: 2rem 0 1rem 0;
+            /* Espaçamento acima e abaixo do logo */
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-logo img {
+            max-height: 80px;
+            /* Define uma altura máxima para o logo não ficar gigante */
+            width: auto;
+            /* Mantém a proporção correta */
+
+            /* O TRUQUE: Esta linha abaixo faz o logo ficar branco. 
+       Se o seu logo já for branco ou claro, pode remover esta linha. */
+            filter: brightness(0) invert(1);
+
+            opacity: 0.9;
+            /* Um leve toque de transparência para suavizar */
+            transition: opacity 0.3s;
+        }
+
+        .footer-logo img:hover {
+            opacity: 1;
+            /* Fica totalmente branco ao passar o mouse */
+        }
+
+        /* Adicione isso ao seu CSS */
+        .ifs-brand {
             text-align: center;
-            color: #856404;
+            margin: 2rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e0e0e0;
+            /* Uma linha suave para separar */
+        }
+
+        .ifs-brand img {
+            max-width: 200px;
+            /* Tamanho controlado */
+            height: auto;
+            display: inline-block;
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="header-content">
             <h1>🌾 Lagarto em Ação</h1>
             <p class="subtitle">O Cotidiano de Quem Faz</p>
+            <div class="city-tag">📍 Lagarto - Sergipe, Brasil</div>
         </div>
     </header>
 
     <nav>
         <ul>
             <li><a href="#inicio">Início</a></li>
+            <li><a href="#lagarto">Sobre Lagarto</a></li>
             <li><a href="#tecnologia">Tecnologia</a></li>
             <li><a href="#comercio">Comércio Local</a></li>
             <li><a href="#historias">Histórias de Vida</a></li>
@@ -499,237 +773,342 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
         <section id="inicio">
             <div class="hero">
                 <h2>Gente que Cria, Movimenta e Trabalha</h2>
-                <p>Conheça as histórias, os saberes e o trabalho diário das pessoas que constroem a identidade cultural de Lagarto, Sergipe. Um projeto de valorização da memória local e dos protagonistas da nossa cidade.</p>
+                <p>Conheça as histórias, os saberes e o trabalho diário das pessoas que constroem a identidade cultural
+                    de Lagarto, Sergipe. Um projeto de valorização da memória local e dos protagonistas da nossa cidade.
+                </p>
             </div>
         </section>
 
-        <!-- Tecnologia Section -->
+        <section id="lagarto">
+            <h2>🌆 Conhecendo Lagarto</h2>
+
+            <div class="lagarto-intro">
+                <div class="lagarto-card">
+                    <h3>Uma cidade com história e tradição</h3>
+                    <p>Lagarto é um dos municípios mais importantes do interior de Sergipe, com uma rica história que
+                        remonta ao período colonial. Conhecida por sua forte tradição agropecuária e por ser um polo
+                        industrial e comercial da região, a cidade mantém viva sua identidade cultural através das
+                        pessoas que trabalham, criam e movimentam a economia local todos os dias.</p>
+                </div>
+
+                <div class="lagarto-card orange">
+                    <h3>Por que este projeto?</h3>
+                    <p>Este projeto surge da necessidade de documentar e valorizar as histórias dos trabalhadores,
+                        empreendedores e artesãos que constroem o cotidiano lagartense. Focamos em estabelecimentos do
+                        centro e interior da cidade, priorizando aqueles com proximidade comunitária e tradição no
+                        bairro.</p>
+                </div>
+            </div>
+
+            <div class="lagarto-stats">
+                <div class="stat-card">
+                    <span class="number">~105 mil</span>
+                    <span class="label">Habitantes</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">3º</span>
+                    <span class="label">Maior cidade de Sergipe</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">1697</span>
+                    <span class="label">Ano de fundação</span>
+                </div>
+            </div>
+
+            <div class="highlights">
+                <div class="highlight-item">
+                    <div class="icon">🌾</div>
+                    <div>
+                        <h3>Agropecuária Forte</h3>
+                        <p>Maior criador de gado de Sergipe. Produção de tabaco, cítricos, mandioca e banana. Sede de
+                            grandes vaquejadas.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="icon">🏭</div>
+                    <div>
+                        <h3>Polo Industrial</h3>
+                        <p>Grupo Maratá e Indústria Radiante. Produção de alimentos, embalagens e produtos de limpeza.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="icon">🎉</div>
+                    <div>
+                        <h3>Cultura Vibrante</h3>
+                        <p>Lagarto Folia, Silibrina, festas juninas, Festival da Mandioca. Santuário de Nossa Senhora da
+                            Piedade.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="icon">🍽️</div>
+                    <div>
+                        <h3>Gastronomia Regional</h3>
+                        <p>Arroz de galinha, mocotó, mugunzá, vatapá e derivados da mandioca. Sabores do Nordeste
+                            sergipano.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="methodology">
+                <h3>📋 Metodologia do Projeto</h3>
+                <p>Para este projeto, estabelecemos critérios claros de seleção dos estabelecimentos e trabalhadores
+                    documentados:</p>
+
+                <div class="methodology-grid">
+                    <div>
+                        <div class="icon">📍</div>
+                        <h4>Proximidade</h4>
+                        <p>Estabelecimentos no centro e nos treze (interiores) de Lagarto.</p>
+                    </div>
+
+                    <div>
+                        <div class="icon">⏰</div>
+                        <h4>Tradição</h4>
+                        <p>Negócios com história e presença consolidada na comunidade.</p>
+                    </div>
+
+                    <div>
+                        <div class="icon">🤝</div>
+                        <h4>Relevância Comunitária</h4>
+                        <p>Estabelecimentos que fazem parte do cotidiano do bairro.</p>
+                    </div>
+                </div>
+
+                <p><strong>Processo:</strong> Entrevistas presenciais, fotografias autorais com consentimento (LGPD), e
+                    narrativas que valorizam a memória local.</p>
+            </div>
+        </section>
+
         <section id="tecnologia">
             <h2>💻 Tecnologia</h2>
-            <p>Inovação e soluções digitais. Conheça os empreendedores que levam tecnologia e modernidade para Lagarto.</p>
+            <p>Inovação e soluções digitais que levam tecnologia para Lagarto.</p>
 
             <div class="feature-card">
-                <!-- Foto Grande à Esquerda -->
-                <div class="feature-card-image">
-                    <img src="images/jamsoft.png" alt="Jamsoft Tecnologia - Fachada">
+                <div class="feature-image">
+                    <img src="images/jamsoft.png" alt="Jamsoft Tecnologia">
+                    <div class="photo-credit">
+                        <div class="title">Jamsoft Tecnologia - Fachada</div>
+                        <div class="details">Equipe Lagarto em Ação | 2026 | Centro de Lagarto</div>
+                    </div>
                 </div>
-                
-                <!-- Conteúdo à Direita -->
-                <div class="feature-card-content">
-                    <div class="feature-card-header">
-                        <div class="feature-card-icon">💻</div>
+
+                <div class="feature-content">
+                    <div class="header">
+                        <div class="icon">💻</div>
                         <div>
                             <h3>Jamsoft Tecnologia</h3>
                             <p class="specialty">Sistemas Empresariais e Informática</p>
                         </div>
                     </div>
-                    
-                    <div class="feature-card-description">
-                        <p>O negócio surgiu a partir da <strong style="color: #2c5f2d;">paixão pelo ramo da tecnologia</strong> e da crença de que a venda de soluções vai além do produto, pois abre portas, cria oportunidades e constrói relacionamentos.</p>
-                        <p>O início foi marcado por dedicação, aprendizado constante e pelo compromisso em oferecer sempre um atendimento de qualidade.</p>
+
+                    <div class="description">
+                        <p>O negócio surgiu da paixão pela tecnologia e da crença de que soluções vão além do produto,
+                            abrindo portas e construindo relacionamentos.</p>
+                        <p>Há mais de duas décadas, a Jamsoft é referência em soluções tecnológicas para empresas de
+                            Lagarto e região.</p>
                     </div>
 
-                    <!-- Segunda foto menor -->
-                    <div class="feature-card-stats">
-                        <div class="feature-stat">
-                            <div class="feature-stat-label">
-                                <span>📅</span>
-                                <strong>Experiência</strong>
-                            </div>
-                            <p class="feature-stat-value">22 anos no bairro</p>
+                    <div class="stats">
+                        <div>
+                            <span>📅</span>
+                            <strong>22 anos no bairro</strong>
                         </div>
-                        <div class="feature-stat">
-                            <div class="feature-stat-label">
-                                <span>🏆</span>
-                                <strong>Referência</strong>
-                            </div>
-                            <p class="feature-stat-value">Tecnologia em Lagarto</p>
+                        <div>
+                            <span>🏆</span>
+                            <strong>Referência em Tecnologia</strong>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Comércio Local Section -->
         <section id="comercio">
             <h2>🏪 Comércio Local</h2>
-            <p>Estabelecimentos que servem a comunidade. Conheça os comerciantes que fazem parte do dia a dia de Lagarto.</p>
+            <p>Estabelecimentos que servem a comunidade lagartense.</p>
 
             <div class="feature-card">
-                <!-- Foto Grande à Esquerda -->
-                <div class="feature-card-image">
-                    <img src="images/2_entrevistado.png" alt="Mercadinho e Panificação São José">
+                <div class="feature-image">
+                    <img src="images/2_entrevistado.png" alt="Mercadinho São José">
+                    <div class="photo-credit">
+                        <div class="title">Mercadinho e Panificação São José</div>
+                        <div class="details">Equipe Lagarto em Ação | 2026 | Treze</div>
+                    </div>
                 </div>
-                
-                <!-- Conteúdo à Direita -->
-                <div class="feature-card-content">
-                    <div class="feature-card-header">
-                        <div class="feature-card-icon" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);">
-                            🏪
-                        </div>
+
+                <div class="feature-content">
+                    <div class="header">
+                        <div class="icon red">🏪</div>
                         <div>
                             <h3>Mercadinho e Panificação São José</h3>
                             <p class="specialty">José Dos Santos Menezes - Proprietário</p>
                         </div>
                     </div>
-                    
-                    <div class="feature-card-description">
-                        <p><strong style="color: #2c5f2d;">Produtos:</strong> Alimentos, pães e panificações, cosméticos e itens de higiene pessoal.</p>
-                        
-                        <p>O negócio já era de um parente que veio a falecer. A dona que ficou após isso era minha irmã, que me alugou o comércio. No início estava tudo muito desorganizado, então foi necessário fazer algumas pequenas reformas e reorganizar os documentos do estabelecimento.</p>
-                        
-                        <p>Hoje o Mercadinho São José é referência no bairro, oferecendo produtos de qualidade e um atendimento próximo à comunidade.</p>
+
+                    <div class="description">
+                        <p><strong>Produtos:</strong> Alimentos, pães, panificações, cosméticos e itens de higiene.</p>
+                        <p>O negócio era de um parente que faleceu. Minha irmã ficou com ele e me alugou. No início
+                            estava desorganizado, então fizemos reformas e reorganizamos os documentos.</p>
+                        <p>Hoje o Mercadinho São José é referência no bairro, com produtos de qualidade e atendimento
+                            próximo à comunidade.</p>
                     </div>
 
-                    <div class="feature-card-stats">
-                        <div class="feature-stat">
-                            <div class="feature-stat-label">
-                                <span>📅</span>
-                                <strong>No bairro</strong>
-                            </div>
-                            <p class="feature-stat-value">Cerca de 5 anos</p>
+                    <div class="stats">
+                        <div>
+                            <span>📅</span>
+                            <strong>Cerca de 5 anos</strong>
                         </div>
-                        <div class="feature-stat">
-                            <div class="feature-stat-label">
-                                <span>🏆</span>
-                                <strong>Destaque</strong>
-                            </div>
-                            <p class="feature-stat-value">Tradição familiar</p>
+                        <div>
+                            <span>🏆</span>
+                            <strong>Tradição familiar</strong>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Histórias de Vida Section -->
-       <section id="historias">
+
+        <section id="historias">
             <h2>📖 Histórias de Vida</h2>
-            <p>Trajetórias que inspiram. Conheça trabalhadores antigos da cidade e suas memórias sobre Lagarto.</p>
+            <p>Trajetórias que inspiram de trabalhadores de Lagarto.</p>
 
-            <!-- História 1 -->
-            <div style="background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 2.5rem; border-left: 5px solid #2c5f2d;">
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0;">
-                        👤
-                    </div>
+            <div class="story green">
+                <div class="story-header">
+                    <div class="icon">👤</div>
                     <div>
-                        <h3 style="color: #2c5f2d; font-size: 1.8rem; margin: 0;">Seu Francisco das Chagas</h3>
-                        <p style="color: #666; margin: 0; font-size: 1.1rem;"><strong>Agricultor</strong> • 68 anos em Lagarto</p>
+                        <h3>Seu Francisco das Chagas</h3>
+                        <p><strong>Agricultor</strong> • 68 anos em Lagarto</p>
                     </div>
                 </div>
-                
-                <div style="color: #555; font-size: 1.05rem; line-height: 1.9;">
-                    <p style="margin-bottom: 1rem;">
-                        "Comecei a trabalhar na roça muito cedo, ainda menino. Meu pai me ensinou que a terra é mãe, e se você cuida dela, ela cuida de você. Foram muitos anos de sol quente, de chuva na hora errada, de seca que matava a plantação. Mas nunca desisti."
-                    </p>
-                    <p style="margin-bottom: 1rem; background: #f9f9f9; padding: 1.5rem; border-radius: 10px; font-style: italic;">
-                        "Vi Lagarto crescer. Antes não tinha asfalto, não tinha mercado grande. Era tudo mais simples, mas a gente era feliz. As pessoas se ajudavam mais, todo mundo se conhecia pelo nome."
-                    </p>
-                    <p style="margin-bottom: 1rem;">
-                        Seu Francisco plantou milho, feijão e mandioca durante toda a vida. Criou cinco filhos do trabalho na terra e diz que não se arrepende de nada. "Ensinei meus filhos a amar a terra. Nem todos ficaram na roça, mas todos sabem de onde vieram."
-                    </p>
-                    <p style="margin-bottom: 0; font-weight: 600; color: #2c5f2d;">
-                        💬 "Hoje estou aposentado, mas ainda acordo cedo pra cuidar da minha hortinha. O corpo já não aguenta como antes, mas a vontade continua a mesma."
-                    </p>
+
+                <div class="story-content">
+                    <p>"Comecei a trabalhar na roça muito cedo, ainda menino. Meu pai me ensinou que a terra é mãe, e se
+                        você cuida dela, ela cuida de você. Foram muitos anos de sol quente, de chuva na hora errada, de
+                        seca que matava a plantação. Mas nunca desisti."</p>
+
+                    <div class="quote">
+                        "Vi Lagarto crescer. Antes não tinha asfalto, não tinha mercado grande. Era tudo mais simples,
+                        mas a gente era feliz. As pessoas se ajudavam mais, todo mundo se conhecia pelo nome."
+                    </div>
+
+                    <p>Seu Francisco plantou milho, feijão e mandioca durante toda a vida. Criou cinco filhos do
+                        trabalho na terra e diz que não se arrepende de nada. "Ensinei meus filhos a amar a terra. Nem
+                        todos ficaram na roça, mas todos sabem de onde vieram."</p>
+
+                    <p class="highlight">💬 "Hoje estou aposentado, mas ainda acordo cedo pra cuidar da minha hortinha.
+                        O corpo já não aguenta como antes, mas a vontade continua a mesma."</p>
                 </div>
             </div>
 
-                <div style="background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 2.5rem; border-left: 5px solid #1e40af;">
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0;">
-                        👤
-                    </div>
+            <div class="story blue">
+                <div class="story-header">
+                    <div class="icon">🧵</div>
                     <div>
-                        <h3 style="color: #1e40af; font-size: 1.8rem; margin: 0;">Dona Maria Aparecida Santos</h3>
-                        <p style="color: #666; margin: 0; font-size: 1.1rem;"><strong>Costureira</strong> • 52 anos em Lagarto</p>
+                        <h3>Dona Maria Aparecida</h3>
+                        <p><strong>Costureira</strong> • 52 anos em Lagarto</p>
                     </div>
                 </div>
-                
-                <div style="color: #555; font-size: 1.05rem; line-height: 1.9;">
-                    <p style="margin-bottom: 1rem;">
-                        "Comecei a costurar ainda menina, ajudando minha mãe a fazer roupa pra fora. Aprendi que todo trabalho feito com capricho tem valor. Fiz vestido de noiva, roupa de batizado, uniforme de escola. Cada costura conta uma história."
-                    </p>
-                    <p style="margin-bottom: 1rem; background: #eff6ff; padding: 1.5rem; border-radius: 10px; font-style: italic;">
-                        "O mais bonito é quando uma noiva vem me agradecer porque o vestido ficou perfeito. Ou quando uma mãe traz a filha pra fazer a roupa da formatura, e eu lembro que fiz a roupa da festa de 15 anos dela."
-                    </p>
-                    <p style="margin-bottom: 1rem;">
-                        Dona Maria trabalha em casa, onde mantém sua máquina de costura na sala. "Às vezes trabalho até tarde da noite pra entregar no prazo. Mas amo o que faço. É uma profissão que exige paciência e dedicação."
-                    </p>
-                    <p style="margin-bottom: 0; font-weight: 600; color: #1e40af;">
-                        💬 "Ensinei minhas duas filhas a costurar também. Hoje uma delas trabalha comigo. É bom saber que essa tradição vai continuar na família."
-                    </p>
+
+                <div class="story-content">
+                    <p>"Comecei a costurar ainda menina, ajudando minha mãe a fazer roupa pra fora. Aprendi que todo
+                        trabalho feito com capricho tem valor. Fiz vestido de noiva, roupa de batizado, uniforme de
+                        escola. Cada costura conta uma história."</p>
+
+                    <div class="quote">
+                        "O mais bonito é quando uma noiva vem me agradecer porque o vestido ficou perfeito. Ou quando
+                        uma mãe traz a filha pra fazer a roupa da formatura, e eu lembro que fiz a roupa da festa de 15
+                        anos dela."
+                    </div>
+
+                    <p>Dona Maria trabalha em casa, onde mantém sua máquina de costura na sala. "Às vezes trabalho até
+                        tarde da noite pra entregar no prazo. Mas amo o que faço. É uma profissão que exige paciência e
+                        dedicação."</p>
+
+                    <p class="highlight">💬 "Ensinei minhas duas filhas a costurar também. Hoje uma delas trabalha
+                        comigo. É bom saber que essa tradição vai continuar na família."</p>
                 </div>
             </div>
         </section>
-        <!-- Sobre o Projeto Section -->
+
+
+
         <section id="sobre">
             <h2>ℹ️ Sobre o Projeto</h2>
+
             <div class="about-content">
-                <p><strong>Lagarto em Ação: O Cotidiano de Quem Faz</strong> é um projeto desenvolvido na disciplina de Gerência de Projetos do Instituto Federal de Sergipe (IFS) que busca valorizar e documentar o cotidiano dos trabalhadores, artesãos e agentes culturais da cidade de Lagarto, Sergipe.</p>
+                <div class="ifs-brand">
+                    <img src="images/ifs.png" alt="Instituto Federal de Sergipe">
+                </div>
+                <p><strong>Lagarto em Ação: O Cotidiano de Quem Faz</strong> é um projeto desenvolvido na disciplina de
+                    Gerência de Projetos do Instituto Federal de Sergipe (IFS) que busca valorizar e documentar o
+                    cotidiano dos trabalhadores, artesãos e agentes culturais da cidade de Lagarto, Sergipe.</p>
 
-                <p>A iniciativa nasce da necessidade de reconhecer e preservar a memória local através de um acervo digital 100% autoral, incluindo fotografias e textos inéditos que capturam a essência dos protagonistas que constroem diariamente a identidade cultural do município.</p>
+                <p>A iniciativa nasce da necessidade de reconhecer e preservar a memória local através de um acervo
+                    digital 100% autoral. O projeto compromete-se com a ética na abordagem da comunidade, respeitando
+                    integralmente a LGPD e o ECA.</p>
 
-                <p>O projeto compromete-se com a ética na abordagem da comunidade, respeitando integralmente a LGPD e o ECA, garantindo que todas as pessoas retratadas autorizem o uso de sua imagem e voz através de termos específicos.</p>
-
-                <h3 style="color: #2c5f2d; margin-top: 2rem; margin-bottom: 1rem;">🎯 Objetivos</h3>
-                <p>• Documentar e valorizar o trabalho de profissionais locais</p>
-                <p>• Criar uma vitrine digital para artesãos e pequenos produtores</p>
-                <p>• Preservar a memória e identidade cultural de Lagarto</p>
-                <p>• Fortalecer o sentimento de pertencimento da comunidade</p>
-
-                <h3 style="color: #2c5f2d; margin-top: 2rem; margin-bottom: 1rem;">👥 Equipe</h3>
+                <h3>👥 Nossa Equipe</h3>
                 <div class="team-grid">
                     <div class="team-member">
-                        <div class="team-member-icon">JA</div>
+                        <div class="icon">JA</div>
                         <h4>José Alexandre</h4>
                         <p>Gerente do Projeto</p>
                     </div>
                     <div class="team-member">
-                        <div class="team-member-icon">AR</div>
+                        <div class="icon">AR</div>
                         <h4>Arthur Ribeiro</h4>
                         <p>Desenvolvedor</p>
                     </div>
                     <div class="team-member">
-                        <div class="team-member-icon">GS</div>
+                        <div class="icon">GS</div>
                         <h4>Guilherme Silva</h4>
                         <p>Desenvolvedor</p>
                     </div>
                     <div class="team-member">
-                        <div class="team-member-icon">LE</div>
+                        <div class="icon">LE</div>
                         <h4>Luis Eduardo</h4>
                         <p>Desenvolvedor</p>
                     </div>
                     <div class="team-member">
-                        <div class="team-member-icon">RP</div>
+                        <div class="icon">RP</div>
                         <h4>Rauan Phelipe</h4>
                         <p>Desenvolvedor</p>
                     </div>
                     <div class="team-member">
-                        <div class="team-member-icon">VS</div>
+                        <div class="icon">VS</div>
                         <h4>Victor Silva</h4>
                         <p>Desenvolvedor</p>
                     </div>
                 </div>
 
-                <p style="margin-top: 2rem;"><strong>Orientação:</strong> Profª. Rosana Rocha Siqueira</p>
-                <p><strong>Instituição:</strong> Instituto Federal de Sergipe - Campus Lagarto</p>
-                <p><strong>Período:</strong> 2025/2026</p>
+                <div style="margin-top: 2rem; text-align: center; color: #666;">
+                    <p><strong>Orientação:</strong> Profª. Rosana Rocha Siqueira</p>
+                    <p><strong>Instituição:</strong> Instituto Federal de Sergipe - Campus Lagarto | 2025/2026</p>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
         <p><strong>Lagarto em Ação: O Cotidiano de Quem Faz</strong></p>
-        <p>Um projeto do Instituto Federal de Sergipe</p>
-        <p>© 2025-2026 | Todos os direitos reservados</p>
+        <p>Um projeto de valorização da cultura e trabalho local.</p>
+
         <div class="footer-links">
             <a href="#inicio">Início</a>
-            <a href="#sobre">Sobre</a>
-            <a href="https://www.ifs.edu.br" target="_blank">IFS</a>
+            <a href="#lagarto">Sobre a Cidade</a>
+            <a href="#historias">Histórias</a>
+            <a href="https://www.ifs.edu.br" target="_blank">IFS Oficial</a>
         </div>
+
+        <div class="footer-logo">
+            <img src="images/ifs.png" alt="Logo do Instituto Federal de Sergipe (IFS)">
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">© 2025-2026 | Todos os direitos reservados</p>
     </footer>
 
     <script>
@@ -746,26 +1125,7 @@
                 }
             });
         });
-
-        // Destaque do menu ativo
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
     </script>
 </body>
+
 </html>
