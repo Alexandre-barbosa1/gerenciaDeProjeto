@@ -1,83 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lagarto em Ação: O Cotidiano de Quem Faz</title>
+    <title>Ensino Superior em Lagarto - IFS & UFS</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --verde-lagarto: #2c5f2d;
-            --verde-escuro: #234223;
-            --terra: #a65e2e;
-            --amarelo: #f4d03f;
-            --azul: #2980b9;
+            --verde-ifs: #1e7b3f;
+            --azul-ufs: #004e8c;
+            --dourado: #fdb714;
+            --cinza-escuro: #2d2d2d;
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.7;
             color: #333;
-            background: #fcfaf5;
+            background: #f5f5f5;
         }
 
         header {
-            background: linear-gradient(rgba(35, 66, 35, 0.75), rgba(166, 94, 46, 0.75)), 
-                        url('images/20260111_171854.jpg');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--azul-ufs) 100%);
             color: white;
-            padding: 5rem 0;
+            padding: 3rem 0;
             text-align: center;
-            border-bottom: 6px solid var(--amarelo);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         h1 {
-            font-size: 3.5rem;
-            color: var(--amarelo);
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            font-size: 3rem;
             margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .subtitle {
-            font-size: 1.4rem;
-            font-style: italic;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 1.3rem;
+            opacity: 0.95;
         }
 
         nav {
-            background: #234223;
+            background: var(--cinza-escuro);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         nav ul {
             display: flex;
             justify-content: center;
             list-style: none;
-            flex-wrap: wrap;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         nav a {
             color: white;
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 2rem;
             text-decoration: none;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
             display: block;
-            transition: 0.3s;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
         }
 
         nav a:hover {
-            background: var(--amarelo);
-            color: #234223;
+            background: rgba(255,255,255,0.1);
+            border-bottom-color: var(--dourado);
+        }
+
+        nav a.active {
+            background: rgba(255,255,255,0.15);
+            border-bottom-color: var(--dourado);
         }
 
         main {
@@ -86,213 +85,154 @@
             padding: 3rem 1.5rem;
         }
 
-        section { margin-bottom: 5rem; }
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         h2 {
             font-size: 2.5rem;
-            color: var(--terra);
+            color: var(--cinza-escuro);
             margin-bottom: 2rem;
-            border-bottom: 4px dotted var(--amarelo);
-            padding-bottom: 0.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 4px solid var(--dourado);
         }
 
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 2rem;
-            align-items: center;
+        .intro-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
             margin-bottom: 3rem;
         }
 
-        .intro-text p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            text-align: justify;
+        .intro-section p {
+            font-size: 1.15rem;
             line-height: 1.9;
+            margin-bottom: 1.5rem;
+            text-align: justify;
         }
 
-        .intro-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .intro-image-card {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border: 3px solid white;
-            background: white;
-        }
-
-        .intro-image-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .intro-credit {
-            background: var(--verde-escuro);
-            color: var(--amarelo);
-            font-size: 0.75rem;
-            text-align: center;
-            padding: 0.4rem;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-
-        .culture-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .culture-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(166, 94, 46, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .culture-card:hover { transform: translateY(-8px); }
-
-        .culture-card img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            border-bottom: 5px solid var(--amarelo);
-        }
-
-        .culture-info {
-            padding: 2rem;
-        }
-
-        .culture-info h3 {
-            color: var(--verde-lagarto);
-            margin-bottom: 1rem;
-            font-size: 1.6rem;
-        }
-
-        .culture-info p {
-            color: #555;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .culture-info .credit {
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            color: var(--terra);
-            font-weight: bold;
-            border-top: 1px solid #eee;
-            padding-top: 0.5rem;
-        }
-
-        .feature-large {
+        .institution-card {
             background: white;
             border-radius: 15px;
             padding: 3rem;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
             margin-bottom: 3rem;
-            border-top: 6px solid var(--verde-lagarto);
         }
 
-        .feature-large h3 {
-            color: var(--terra);
+        .institution-card.ifs {
+            border-top: 6px solid var(--verde-ifs);
+        }
+
+        .institution-card.ufs {
+            border-top: 6px solid var(--azul-ufs);
+        }
+
+        .institution-card h3 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
         }
 
-        .feature-large p {
+        .institution-card.ifs h3 {
+            color: var(--verde-ifs);
+        }
+
+        .institution-card.ufs h3 {
+            color: var(--azul-ufs);
+        }
+
+        .institution-card p {
             font-size: 1.1rem;
             line-height: 1.9;
             margin-bottom: 1rem;
-            text-align: justify;
         }
 
-        .photo-grid {
+        .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
-        .photo-item {
-            position: relative;
+        .info-box {
+            background: #f8f9fa;
+            padding: 2rem;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-left: 5px solid var(--dourado);
         }
 
-        .photo-item img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            display: block;
+        .info-box h4 {
+            color: var(--cinza-escuro);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
-        .photo-caption {
-            background: rgba(0,0,0,0.85);
-            color: white;
-            padding: 1.2rem;
-            text-align: center;
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
         }
 
-        .photo-caption .title {
+        .info-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-box li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--dourado);
             font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
         }
 
-        .photo-caption .credit {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            color: var(--amarelo);
+        .photo-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #666;
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            border: 3px dashed #999;
         }
 
-        .ifs-section {
+        .photo-placeholder span {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-section {
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             padding: 3rem;
             border-radius: 15px;
-            border-top: 6px solid var(--azul);
-        }
-
-        .ifs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 3rem;
-        }
-
-        .ifs-grid img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border: 4px solid white;
-        }
-
-        .ifs-text h3 {
-            color: var(--azul);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .ifs-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
+            margin-top: 3rem;
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1.5rem;
             text-align: center;
             margin-top: 2rem;
@@ -300,27 +240,27 @@
 
         .team-member {
             background: white;
-            padding: 1.5rem;
+            padding: 2rem 1rem;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .team-member .avatar {
-            width: 70px;
-            height: 70px;
-            background: var(--verde-lagarto);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--azul-ufs) 100%);
             color: white;
             border-radius: 50%;
             margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
         }
 
         .team-member h4 {
-            color: var(--verde-lagarto);
+            color: var(--cinza-escuro);
             margin-bottom: 0.3rem;
         }
 
@@ -330,7 +270,7 @@
         }
 
         footer {
-            background: #234223;
+            background: var(--cinza-escuro);
             color: white;
             text-align: center;
             padding: 3rem 1rem;
@@ -342,183 +282,220 @@
         }
 
         @media (max-width: 968px) {
-            h1 { font-size: 2.2rem; }
-            .intro-grid, .ifs-grid { grid-template-columns: 1fr; }
-            .culture-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
             nav ul { flex-direction: column; }
-            nav a { text-align: center; }
+            nav a { text-align: center; padding: 1rem; }
+            .info-grid, .galeria-grid, .team-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>🌾 Lagarto em Ação</h1>
-        <p class="subtitle">Tradição, Fé e Trabalho no Coração do Agreste Sergipano</p>
+        <h1>🎓 Ensino Superior em Lagarto</h1>
+        <p class="subtitle">Educação, Ciência e Transformação Social</p>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#chegada">Chegando em Lagarto</a></li>
-            <li><a href="#cultura">Cultura & Tradição</a></li>
-            <li><a href="#trabalho">O Cotidiano de Quem Faz</a></li>
-            <li><a href="#galeria">Galeria Fotográfica</a></li>
-            <li><a href="#ifs">IFS & Equipe</a></li>
+            <li><a href="#home" class="nav-link active" onclick="showPage('home')">Início</a></li>
+            <li><a href="#ifs" class="nav-link" onclick="showPage('ifs')">IFS - Instituto Federal</a></li>
+            <li><a href="#ufs" class="nav-link" onclick="showPage('ufs')">UFS - Universidade Federal</a></li>
+            <li><a href="#galeria" class="nav-link" onclick="showPage('galeria')">Galeria</a></li>
+            <li><a href="#sobre" class="nav-link" onclick="showPage('sobre')">Sobre o Projeto</a></li>
         </ul>
     </nav>
 
     <main>
-        <section id="chegada">
-            <h2>🏙️ Chegando em Lagarto</h2>
-            <div class="intro-grid">
-                <div class="intro-text">
-                    <p>Ao chegar em Lagarto, somos recebidos por uma cidade que equilibra perfeitamente tradição e modernidade. O Terminal Rodoviário Coopertalse marca a porta de entrada para um município que respira cultura nordestina, fé católica e o espírito aguerrido do vaqueiro sergipano.</p>
-                    <p>Lagarto não é apenas o 5º maior município de Sergipe com seus ~105 mil habitantes. É a <strong>Capital da Vaquejada</strong>, polo industrial do Grupo Maratá, e um centro comercial que atende toda a região Centro-Sul do estado.</p>
-                    <p>Este projeto documenta não os negócios genéricos, mas sim <strong>o trabalho que carrega a identidade lagartense</strong> — aquele que está entrelaçado com nossa história, nossa fé e nossa terra.</p>
-                </div>
-                <div class="intro-images">
-                    <div class="intro-image-card">
-                        <img src="images/20260111_174333.jpg" alt="Monumento de entrada em Lagarto">
-                        <div class="intro-credit">📸 Foto: Rosana Siqueira | 2026</div>
-                    </div>
-                    <div class="intro-image-card">
-                        <img src="images/20260111_173308.jpg" alt="Terminal Rodoviário Coopertalse">
-                        <div class="intro-credit">📸 Foto: Rosana Siqueira | 2026</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cultura">
-            <h2>🎉 Cultura Viva: O que nos Define</h2>
-            <p style="font-size: 1.15rem; margin-bottom: 2rem; line-height: 1.9;">Antes de falar de trabalho, é preciso entender a alma de Lagarto. Nossa cultura pulsa nas vaquejadas, na arquitetura colonial azulejada, nas praças onde a comunidade se encontra. É essa identidade que molda quem somos e como trabalhamos.</p>
-
-            <div class="culture-grid">
-                <div class="culture-card">
-                    <img src="images/20260111_175148.jpg" alt="Parque de Vaquejada Zezé Rocha">
-                    <div class="culture-info">
-                        <h3>🤠 Capital da Vaquejada</h3>
-                        <p>O <strong>Parque Zezé Rocha</strong> é o coração pulsante da cultura vaqueira em Lagarto. Aqui, a tradição do vaqueiro se encontra com o esporte, movimentando a economia, o turismo e o orgulho de um povo que celebra suas raízes agropecuárias.</p>
-                        <p>As vaquejadas de Lagarto são referência em todo o Nordeste, atraindo competidores e visitantes que movimentam hotéis, restaurantes e o comércio local.</p>
-                        <p class="credit">📸 Foto: Rosana Siqueira | 2026</p>
-                    </div>
-                </div>
-
-                <div class="culture-card">
-                    <img src="images/20260111_171536.jpg" alt="Arquitetura Colonial com Azulejos">
-                    <div class="culture-info">
-                        <h3>⛪ Fé e Arquitetura Colonial</h3>
-                        <p>Os azulejos portugueses decoram as fachadas históricas do centro, lembrando nossa herança colonial. A devoção à <strong>Nossa Senhora da Piedade</strong>, padroeira da cidade, marca presença no cotidiano e nas festas religiosas que reúnem milhares de fiéis.</p>
-                        <p>Essa arquitetura não é só beleza: é identidade. É o passado conversando com o presente nas ruas de Lagarto.</p>
-                        <p class="credit">📸 Foto: Rosana Siqueira | 2026</p>
-                    </div>
-                </div>
-
-                <div class="culture-card">
-                    <img src="images/20260111_173840.jpg" alt="Fonte e Praça Pública">
-                    <div class="culture-info">
-                        <h3>🌳 Espaços de Convivência</h3>
-                        <p>As praças e fontes são onde a vida acontece. É aqui que a comunidade se encontra, que o comércio informal floresce, que as histórias são contadas. Esses espaços públicos são vitais para entender como Lagarto funciona.</p>
-                        <p>Ao entardecer, as praças se enchem de vida: famílias, vendedores ambulantes, jovens. É o cotidiano lagartense em sua essência mais pura.</p>
-                        <p class="credit">📸 Foto: Rosana Siqueira | 2026</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="trabalho">
-            <h2>💼 O Cotidiano de Quem Faz</h2>
+        <!-- PÁGINA INICIAL -->
+        <div id="home" class="page active">
+            <h2>🌆 Lagarto: Polo de Educação Superior</h2>
             
-            <div class="feature-large">
-                <h3>O Desafio da Modernização no Interior</h3>
-                <p>Lagarto enfrenta o desafio de crescer sem perder sua essência. Enquanto mantemos viva a cultura da vaquejada e da agricultura familiar, precisamos também de tecnologia, serviços modernos e infraestrutura que atendam uma população em expansão.</p>
-                <p>É nesse contexto que surgem estabelecimentos como a <strong>Jamsoft Tecnologia</strong> — há 22 anos trazendo soluções de sistemas empresariais para o comércio e indústria local. Não é apenas uma loja de informática; é a ponte entre a tradição lagartense e o mundo digital.</p>
-                <p>Da mesma forma, o <strong>Mercadinho e Panificação São José</strong>, nos Treze, representa o comércio de bairro que mantém a relação de confiança típica do interior. José Dos Santos Menezes herdou o negócio familiar, reorganizou, modernizou, mas manteve o atendimento humanizado que os moradores esperam.</p>
-                <p>Esses são exemplos de quem trabalha diariamente para que Lagarto cresça sem esquecer de onde veio.</p>
+            <div class="intro-section">
+                <p>Lagarto, município sergipano com aproximadamente 105 mil habitantes, destaca-se não apenas por sua tradição agropecuária e industrial, mas também como importante <strong>polo de educação superior no interior do estado</strong>.</p>
+                
+                <p>A presença de instituições federais de ensino transformou a cidade em um centro de formação acadêmica, pesquisa científica e desenvolvimento tecnológico, atraindo estudantes de toda a região e promovendo impacto socioeconômico significativo.</p>
+                
+                <p>Este projeto documenta as principais instituições de ensino superior que fazem de Lagarto uma referência educacional em Sergipe.</p>
             </div>
 
-            <div class="intro-grid" style="margin-top: 3rem;">
-                <img src="images/jamsoft.png" alt="Jamsoft Tecnologia" style="width: 100%; height: 350px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
-                <div>
-                    <h3 style="color: var(--verde-lagarto); font-size: 1.8rem; margin-bottom: 1rem;">💻 Jamsoft Tecnologia</h3>
-                    <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>22 anos</strong> levando soluções tecnológicas para empresas de Lagarto. Em um município onde a economia gira em torno do agronegócio e da indústria, a Jamsoft fornece os sistemas que fazem esses setores funcionarem com eficiência.</p>
-                    <p style="line-height: 1.8; color: #666; font-size: 0.95rem; font-style: italic;">📸 Foto: Rauan | 2026</p>
+            <div class="info-grid">
+                <div class="institution-card ifs">
+                    <h3>🟢 Instituto Federal de Sergipe</h3>
+                    <p><strong>Campus Lagarto</strong></p>
+                    <p>Ensino técnico integrado, graduações tecnológicas e programas de pós-graduação nas áreas de Tecnologia, Gestão e Indústria.</p>
+                    <p style="margin-top: 1.5rem;"><a href="#ifs" onclick="showPage('ifs')" style="background: var(--verde-ifs); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold;">Saiba Mais →</a></p>
+                </div>
+
+                <div class="institution-card ufs">
+                    <h3>🔵 Universidade Federal de Sergipe</h3>
+                    <p><strong>Campus de Lagarto</strong></p>
+                    <p>Cursos de graduação na área da Saúde, formando profissionais para o Sistema Único de Saúde (SUS) e pesquisa aplicada.</p>
+                    <p style="margin-top: 1.5rem;"><a href="#ufs" onclick="showPage('ufs')" style="background: var(--azul-ufs); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold;">Saiba Mais →</a></p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="galeria">
+        <!-- PÁGINA IFS -->
+        <div id="ifs" class="page">
+            <h2 style="color: var(--verde-ifs);">🟢 Instituto Federal de Sergipe - Campus Lagarto</h2>
+            
+            <div class="institution-card ifs">
+                <h3>Sobre o IFS Campus Lagarto</h3>
+                <p>O Instituto Federal de Sergipe (IFS) - Campus Lagarto é uma instituição pública federal de ensino que oferece educação profissional e tecnológica em diversos níveis e modalidades.</p>
+                
+                <p>Inaugurado em [ANO], o campus se consolidou como referência em formação técnica e tecnológica no interior sergipano, contribuindo para o desenvolvimento regional através da qualificação profissional e da pesquisa aplicada.</p>
+
+                <div class="photo-placeholder">
+                    <span>🏫</span>
+                    <p>Foto do Campus IFS Lagarto</p>
+                    <small>(Adicionar foto posteriormente)</small>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4>📚 Cursos Oferecidos</h4>
+                        <ul>
+                            <li>Técnico em Informática (Integrado)</li>
+                            <li>Técnico em Eletrotécnica</li>
+                            <li>Tecnologia em Gestão</li>
+                            <li>Tecnologia em Análise e Desenvolvimento de Sistemas</li>
+                            <li>[Adicionar outros cursos]</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>🔬 Áreas de Atuação</h4>
+                        <ul>
+                            <li>Tecnologia da Informação</li>
+                            <li>Automação Industrial</li>
+                            <li>Gestão Empresarial</li>
+                            <li>Pesquisa e Inovação</li>
+                            <li>Extensão Comunitária</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>🎯 Diferenciais</h4>
+                        <ul>
+                            <li>Ensino gratuito e de qualidade</li>
+                            <li>Infraestrutura moderna</li>
+                            <li>Professores qualificados</li>
+                            <li>Programas de assistência estudantil</li>
+                            <li>Conexão com o mercado de trabalho</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA UFS -->
+        <div id="ufs" class="page">
+            <h2 style="color: var(--azul-ufs);">🔵 Universidade Federal de Sergipe - Campus Lagarto</h2>
+            
+            <div class="institution-card ufs">
+                <h3>Sobre a UFS Campus Lagarto</h3>
+                <p>A Universidade Federal de Sergipe (UFS) - Campus de Lagarto é especializado na formação de profissionais da área da Saúde, com foco na qualificação para atuação no Sistema Único de Saúde (SUS).</p>
+                
+                <p>Inaugurado em 2009, o campus representa um importante investimento federal na interiorização da educação superior e na formação de recursos humanos para a saúde pública no estado de Sergipe.</p>
+
+                <div class="photo-placeholder">
+                    <span>🏥</span>
+                    <p>Foto do Campus UFS Lagarto</p>
+                    <small>(Adicionar foto posteriormente)</small>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4>🏥 Cursos de Graduação</h4>
+                        <ul>
+                            <li>Enfermagem</li>
+                            <li>Fisioterapia</li>
+                            <li>Fonoaudiologia</li>
+                            <li>Medicina</li>
+                            <li>Nutrição</li>
+                            <li>Odontologia</li>
+                            <li>Terapia Ocupacional</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>🔬 Pesquisa e Extensão</h4>
+                        <ul>
+                            <li>Pesquisa em Saúde Coletiva</li>
+                            <li>Programas de extensão comunitária</li>
+                            <li>Atendimento à população local</li>
+                            <li>Projetos de saúde pública</li>
+                            <li>Integração ensino-serviço-comunidade</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>💡 Impacto Regional</h4>
+                        <ul>
+                            <li>Formação de profissionais de saúde</li>
+                            <li>Atendimento à comunidade</li>
+                            <li>Desenvolvimento científico</li>
+                            <li>Fortalecimento do SUS</li>
+                            <li>Transformação social</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA GALERIA -->
+        <div id="galeria" class="page">
             <h2>📷 Galeria Fotográfica</h2>
-            <p style="font-size: 1.15rem; margin-bottom: 2rem;">Um registro visual da nossa cidade: desde os pontos turísticos até os espaços do cotidiano. Todas as fotografias são autorais, produzidas pela equipe com autorização documentada (LGPD).</p>
+            
+            <div class="intro-section">
+                <p>Registro visual das instituições de ensino superior de Lagarto. As fotografias serão adicionadas conforme o desenvolvimento do projeto.</p>
+            </div>
 
-            <div class="photo-grid">
-                <div class="photo-item">
-                    <img src="images/03-07-09_1659.jpg" alt="IFS Campus Lagarto">
-                    <div class="photo-caption">
-                        <div class="title">IFS Campus Lagarto ao Entardecer</div>
-                        <div class="credit">Foto: Rosana Siqueira | 2026</div>
-                    </div>
+            <div class="galeria-grid">
+                <div class="photo-placeholder" style="height: 300px;">
+                    <span>📸</span>
+                    <p>IFS - Fachada Principal</p>
                 </div>
 
-                <div class="photo-item">
-                    <img src="images/20260111_171854.jpg" alt="Santuário">
-                    <div class="photo-caption">
-                        <div class="title">Santuário Nossa Senhora da Piedade</div>
-                        <div class="credit">Foto: Rosana Siqueira | 2026</div>
-                    </div>
+                <div class="photo-placeholder" style="height: 300px;">
+                    <span>📸</span>
+                    <p>IFS - Laboratórios</p>
                 </div>
 
-                <div class="photo-item">
-                    <img src="images/20260111_173404.jpg" alt="Comércio Local">
-                    <div class="photo-caption">
-                        <div class="title">Comércio de Bairro Modernizado</div>
-                        <div class="credit">Foto: Rosana Siqueira | 2026</div>
-                    </div>
+                <div class="photo-placeholder" style="height: 300px;">
+                    <span>📸</span>
+                    <p>UFS - Campus</p>
                 </div>
 
-                <div class="photo-item">
-                    <img src="images/20260111_174333.jpg" alt="Monumento">
-                    <div class="photo-caption">
-                        <div class="title">Monumento de Entrada na Cidade</div>
-                        <div class="credit">Foto: Rosana Siqueira | 2026</div>
-                    </div>
+                <div class="photo-placeholder" style="height: 300px;">
+                    <span>📸</span>
+                    <p>UFS - Áreas de Saúde</p>
                 </div>
 
-                <div class="photo-item">
-                    <img src="images/20260111_173308.jpg" alt="Terminal">
-                    <div class="photo-caption">
-                        <div class="title">Terminal Rodoviário Coopertalse</div>
-                        <div class="credit">Foto: Rosana Siqueira | 2026</div>
-                    </div>
+                <div class="photo-placeholder" style="height: 300px;">
+                    <span>📸</span>
+                    <p>Vida Acadêmica</p>
                 </div>
 
-                <div class="photo-item">
-                    <img src="images/20260111_175148.jpg" alt="Parque Zezé Rocha">
-                    <div class="photo-caption">
-                        <div class="title">Parque de Vaquejada Zezé Rocha</div>
-                        <div class="credit">Foto: Rosana Siqueira | 2026</div>
-                    </div>
+                <div class="photo-placeholder" style="height: 300px;">
+                    <span>📸</span>
+                    <p>Eventos e Extensão</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="ifs">
-            <h2>🎓 IFS & Equipe do Projeto</h2>
+        <!-- PÁGINA SOBRE -->
+        <div id="sobre" class="page">
+            <h2>ℹ️ Sobre o Projeto</h2>
             
-            <div class="ifs-section">
-                <div class="ifs-grid">
-                    <div style="text-align: center;">
-                        <img src="images/03-07-09_1659.jpg" alt="Campus IFS Lagarto">
-                        <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; font-style: italic;">📸 Foto: Rosana Siqueira | 2026</p>
-                    </div>
-                    
-                    <div class="ifs-text">
-                        <h3>Produção Acadêmica Local</h3>
-                        <p>Este site é resultado da disciplina de <strong>Gerência de Projetos</strong> do Instituto Federal de Sergipe - Campus Lagarto. Nosso objetivo foi sair da teoria e documentar a realidade econômica, cultural e social que nos cerca.</p>
-                        <p>Através de pesquisa de campo, entrevistas e fotografia autoral, buscamos valorizar o trabalho de quem constrói Lagarto diariamente.</p>
-                    </div>
-                </div>
+            <div class="about-section">
+                <h3 style="color: var(--cinza-escuro); font-size: 2rem; margin-bottom: 1.5rem;">🎓 Lagarto em Ação: Educação Superior</h3>
+                
+                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 1.5rem;">Este projeto é desenvolvido na disciplina de <strong>Gerência de Projetos</strong> do Instituto Federal de Sergipe - Campus Lagarto, com o objetivo de documentar e valorizar as instituições de ensino superior presentes no município.</p>
+                
+                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 2rem;">Nosso foco é mostrar como o IFS e a UFS contribuem para a transformação social, econômica e cultural de Lagarto e região.</p>
 
-                <h3 style="color: var(--verde-lagarto); font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">👥 Equipe de Desenvolvimento</h3>
+                <h4 style="color: var(--cinza-escuro); margin-top: 2rem; margin-bottom: 1rem; font-size: 1.5rem;">👥 Equipe do Projeto</h4>
                 
                 <div class="team-grid">
                     <div class="team-member">
@@ -553,30 +530,45 @@
                     </div>
                 </div>
 
-                <p style="text-align: center; margin-top: 2.5rem; font-size: 1.1rem; color: #555;">
+                <p style="text-align: center; margin-top: 3rem; font-size: 1.1rem; color: #555;">
                     <strong>Orientação:</strong> Profª. Rosana Rocha Siqueira<br>
                     <strong>Instituição:</strong> Instituto Federal de Sergipe - Campus Lagarto<br>
                     <strong>Período:</strong> 2025/2026
                 </p>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>
-        <p style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">🌾 Lagarto em Ação</p>
-        <p>Valorizando nossa terra e nossa gente</p>
-        <p style="font-size: 0.85rem; margin-top: 1.5rem; opacity: 0.8;">© 2026 Instituto Federal de Sergipe - Todos os direitos reservados</p>
+        <p style="font-size: 1.3rem; font-weight: bold;">🎓 Ensino Superior em Lagarto</p>
+        <p>Um projeto do IFS - Campus Lagarto</p>
+        <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">© 2026 - Todos os direitos reservados</p>
     </footer>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
+        function showPage(pageId) {
+            // Esconde todas as páginas
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Mostra a página selecionada
+            document.getElementById(pageId).classList.add('active');
+            
+            // Atualiza o menu ativo
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Scroll suave para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Navegação por URL hash
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
+            }
         });
     </script>
 </body>
