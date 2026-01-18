@@ -19,26 +19,37 @@
             line-height: 1.7;
             color: #333;
             background: #f5f5f5;
+            transition: background 0.5s ease;
         }
 
+        /* --- CONFIGURAÇÃO DO FUNDO IMERSIVO NA UFS --- */
+        body.ufs-active {
+            background: linear-gradient(rgba(0, 50, 100, 0.85), rgba(0, 30, 60, 0.9)), 
+                        url('images/foto_ufs/entrada.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white; /* Isso deixa o texto do corpo branco */
+        }
+
+        /* HEADER & NAV */
         header {
             background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--azul-ufs) 100%);
             color: white;
             padding: 3rem 0;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: background 0.3s;
         }
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        body.ufs-active header {
+            background: transparent;
+            box-shadow: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.95;
-        }
+        h1 { font-size: 3rem; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .subtitle { font-size: 1.3rem; opacity: 0.95; }
 
         nav {
             background: var(--cinza-escuro);
@@ -46,246 +57,146 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: background 0.3s;
         }
 
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            max-width: 1200px;
-            margin: 0 auto;
+        body.ufs-active nav {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
+        nav ul { display: flex; justify-content: center; list-style: none; max-width: 1200px; margin: 0 auto; }
+        
         nav a {
-            color: white;
-            padding: 1.2rem 2rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            display: block;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
+            color: white; padding: 1.2rem 2rem; text-decoration: none; text-transform: uppercase;
+            font-weight: 600; font-size: 0.95rem; letter-spacing: 0.5px; display: block;
+            transition: all 0.3s; border-bottom: 3px solid transparent;
         }
 
-        nav a:hover {
-            background: rgba(255,255,255,0.1);
-            border-bottom-color: var(--dourado);
-        }
+        nav a:hover { background: rgba(255,255,255,0.1); border-bottom-color: var(--dourado); }
+        nav a.active { background: rgba(255,255,255,0.15); border-bottom-color: var(--dourado); }
 
-        nav a.active {
-            background: rgba(255,255,255,0.15);
-            border-bottom-color: var(--dourado);
-        }
+        main { min-height: 80vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem; }
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.8s; }
 
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         h2 {
-            font-size: 2.5rem;
-            color: var(--cinza-escuro);
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 4px solid var(--dourado);
+            font-size: 2.5rem; color: var(--cinza-escuro); margin-bottom: 2rem;
+            padding-bottom: 1rem; border-bottom: 4px solid var(--dourado);
         }
 
-        .intro-section {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
+        body.ufs-active h2 { color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+        /* CARDS GERAIS */
+        .intro-section, .institution-card, .info-box, .team-member, .about-section, .course-card, .route-card, .gallery-section {
+            background: white; color: #333; padding: 2rem; border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1); margin-bottom: 3rem;
         }
 
-        .intro-section p {
-            font-size: 1.15rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-            text-align: justify;
+        /* EFEITO VIDRO NA UFS */
+        body.ufs-active .intro-section, body.ufs-active .institution-card, 
+        body.ufs-active .info-box, body.ufs-active .course-card, body.ufs-active .route-card, body.ufs-active .gallery-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
         }
 
-        .institution-card {
-            background: white;
-            border-radius: 15px;
-            padding: 3rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
+        /* CORREÇÃO DE TEXTO PRETO NOS CARDS */
+        body.ufs-active .institution-card h3, body.ufs-active .institution-card p,
+        body.ufs-active .info-box h4, body.ufs-active .info-box li, 
+        body.ufs-active .course-card h4, body.ufs-active .course-card p {
+            color: #333; text-shadow: none;
         }
 
-        .institution-card.ifs {
-            border-top: 6px solid var(--verde-ifs);
+        .institution-card.ifs h3 { color: var(--verde-ifs) !important; }
+        .institution-card.ufs h3 { color: var(--azul-ufs) !important; }
+        .institution-card.ifs { border-top: 6px solid var(--verde-ifs); }
+        .institution-card.ufs { border-top: 6px solid var(--azul-ufs); }
+
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .info-box { border-left: 5px solid var(--dourado); }
+        .info-box ul { list-style: none; padding-left: 0; }
+        .info-box li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; }
+        .info-box li:before { content: "▸"; position: absolute; left: 0; color: var(--dourado); font-weight: bold; }
+
+        /* CURSOS GRID & MODAL */
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .course-card {
+            padding: 0; overflow: hidden; transition: transform 0.3s; border-top: 4px solid var(--azul-ufs); cursor: pointer; position: relative;
+        }
+        .course-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,78,140,0.3); }
+        .course-card img { width: 100%; height: 150px; object-fit: cover; transition: opacity 0.3s; }
+        .course-content { padding: 1.5rem; }
+        .course-card h4 { color: var(--azul-ufs) !important; margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .course-card p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 0; }
+
+        /* --- MODAL (CORRIGIDO) --- */
+        .modal { 
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+            width: 100%; height: 100%; overflow: auto; 
+            background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); 
+            animation: fadeInModal 0.3s; 
+        }
+        @keyframes fadeInModal { from {opacity: 0;} to {opacity: 1;} }
+        
+        .modal-content { 
+            background-color: #fefefe; 
+            margin: 5% auto; padding: 0; 
+            border: 1px solid #888; 
+            width: 80%; max-width: 900px; 
+            border-radius: 15px; overflow: hidden; 
+            position: relative; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+            
+            /* CORREÇÃO AQUI: Força a cor do texto para cinza escuro, ignorando o body */
+            color: #333 !important; 
         }
 
-        .institution-card.ufs {
-            border-top: 6px solid var(--azul-ufs);
-        }
+        .close-btn { color: white; position: absolute; top: 15px; right: 25px; font-size: 35px; font-weight: bold; z-index: 10; cursor: pointer; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .modal-header { height: 250px; background-size: cover; background-position: center; position: relative; display: flex; align-items: flex-end; padding: 2rem; }
+        .modal-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0, 78, 140, 0.9), transparent); }
+        .modal-title { position: relative; color: white; font-size: 2.5rem; font-weight: bold; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .modal-body { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        
+        /* Garante que os títulos dentro do modal tenham cor correta */
+        .modal-info h3 { color: var(--azul-ufs); margin-bottom: 1rem; border-bottom: 2px solid var(--dourado); display: inline-block; }
+        .modal-info p { color: #444; margin-bottom: 1rem; }
 
-        .institution-card h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
+        .modal-gallery { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        .modal-gallery img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; border: 2px solid #eee; }
 
-        .institution-card.ifs h3 {
-            color: var(--verde-ifs);
-        }
+        /* ROTAS */
+        .routes-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .route-card h4 { color: var(--azul-ufs); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .map-frame { width: 100%; height: 350px; border: 0; border-radius: 10px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        .route-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .route-photos img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border: 2px solid #eee; cursor: pointer; transition: transform 0.3s; }
+        .route-photos img:hover { transform: scale(1.05); }
 
-        .institution-card.ufs h3 {
-            color: var(--azul-ufs);
-        }
+        /* IMAGENS GERAIS */
+        .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+        .img-card { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); border: 4px solid white; transition: transform 0.3s; }
+        .img-card:hover { transform: scale(1.02); }
 
-        .institution-card p {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            margin-bottom: 1rem;
-        }
+        .photo-placeholder { width: 100%; height: 300px; background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; flex-direction: column; color: #666; margin: 2rem 0; border: 3px dashed #999; }
+        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; text-align: center; margin-top: 2rem; }
+        .team-member .avatar { width: 80px; height: 80px; background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--azul-ufs) 100%); color: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .info-box {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 12px;
-            border-left: 5px solid var(--dourado);
-        }
-
-        .info-box h4 {
-            color: var(--cinza-escuro);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .info-box ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .info-box li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .info-box li:before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: var(--dourado);
-            font-weight: bold;
-        }
-
-        .photo-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: #666;
-            font-size: 1.2rem;
-            margin: 2rem 0;
-            border: 3px dashed #999;
-        }
-
-        .photo-placeholder span {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .galeria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .about-section {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 3rem;
-            border-radius: 15px;
-            margin-top: 3rem;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .team-member {
-            background: white;
-            padding: 2rem 1rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .team-member .avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--azul-ufs) 100%);
-            color: white;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .team-member h4 {
-            color: var(--cinza-escuro);
-            margin-bottom: 0.3rem;
-        }
-
-        .team-member p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        footer {
-            background: var(--cinza-escuro);
-            color: white;
-            text-align: center;
-            padding: 3rem 1rem;
-            margin-top: 5rem;
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
+        footer { background: var(--cinza-escuro); color: white; text-align: center; padding: 3rem 1rem; margin-top: 5rem; position: relative; z-index: 2; }
+        body.ufs-active footer { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); }
 
         @media (max-width: 968px) {
             h1 { font-size: 2rem; }
             nav ul { flex-direction: column; }
             nav a { text-align: center; padding: 1rem; }
-            .info-grid, .galeria-grid, .team-grid { grid-template-columns: 1fr; }
+            .info-grid, .galeria-grid, .team-grid, .img-grid, .course-grid, .routes-container, .modal-body { grid-template-columns: 1fr; }
+            .modal-header { height: 150px; }
+            .modal-title { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -306,270 +217,234 @@
     </nav>
 
     <main>
-        <!-- PÁGINA INICIAL -->
         <div id="home" class="page active">
-            <h2>🌆 Lagarto: Polo de Educação Superior</h2>
-            
-            <div class="intro-section">
-                <p>Lagarto, município sergipano com aproximadamente 105 mil habitantes, destaca-se não apenas por sua tradição agropecuária e industrial, mas também como importante <strong>polo de educação superior no interior do estado</strong>.</p>
-                
-                <p>A presença de instituições federais de ensino transformou a cidade em um centro de formação acadêmica, pesquisa científica e desenvolvimento tecnológico, atraindo estudantes de toda a região e promovendo impacto socioeconômico significativo.</p>
-                
-                <p>Este projeto documenta as principais instituições de ensino superior que fazem de Lagarto uma referência educacional em Sergipe.</p>
-            </div>
-
-            <div class="info-grid">
-                <div class="institution-card ifs">
-                    <h3>🟢 Instituto Federal de Sergipe</h3>
-                    <p><strong>Campus Lagarto</strong></p>
-                    <p>Ensino técnico integrado, graduações tecnológicas e programas de pós-graduação nas áreas de Tecnologia, Gestão e Indústria.</p>
-                    <p style="margin-top: 1.5rem;"><a href="#ifs" onclick="showPage('ifs')" style="background: var(--verde-ifs); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold;">Saiba Mais →</a></p>
+            <div class="container">
+                <h2>🌆 Lagarto: Polo de Educação Superior</h2>
+                <div class="intro-section">
+                    <p>Lagarto, município sergipano com aproximadamente 105 mil habitantes, destaca-se não apenas por sua tradição agropecuária e industrial, mas também como importante <strong>polo de educação superior no interior do estado</strong>.</p>
+                    <p>A presença de instituições federais de ensino transformou a cidade em um centro de formação acadêmica, pesquisa científica e desenvolvimento tecnológico, atraindo estudantes de toda a região e promovendo impacto socioeconômico significativo.</p>
                 </div>
-
-                <div class="institution-card ufs">
-                    <h3>🔵 Universidade Federal de Sergipe</h3>
-                    <p><strong>Campus de Lagarto</strong></p>
-                    <p>Cursos de graduação na área da Saúde, formando profissionais para o Sistema Único de Saúde (SUS) e pesquisa aplicada.</p>
-                    <p style="margin-top: 1.5rem;"><a href="#ufs" onclick="showPage('ufs')" style="background: var(--azul-ufs); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold;">Saiba Mais →</a></p>
+                <div class="info-grid">
+                    <div class="institution-card ifs">
+                        <h3>🟢 Instituto Federal de Sergipe</h3>
+                        <p><strong>Campus Lagarto</strong></p>
+                        <p>Ensino técnico integrado, graduações tecnológicas e pós-graduação nas áreas de Tecnologia, Gestão e Indústria.</p>
+                        <p style="margin-top: 1.5rem;"><a href="#ifs" onclick="showPage('ifs')" style="background: var(--verde-ifs); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold;">Saiba Mais →</a></p>
+                    </div>
+                    <div class="institution-card ufs">
+                        <h3>🔵 Universidade Federal de Sergipe</h3>
+                        <p><strong>Campus de Lagarto</strong></p>
+                        <p>Cursos de graduação na área da Saúde, formando profissionais para o SUS e pesquisa aplicada.</p>
+                        <p style="margin-top: 1.5rem;"><a href="#ufs" onclick="showPage('ufs')" style="background: var(--azul-ufs); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold;">Saiba Mais →</a></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- PÁGINA IFS -->
         <div id="ifs" class="page">
-            <h2 style="color: var(--verde-ifs);">🟢 Instituto Federal de Sergipe - Campus Lagarto</h2>
-            
-            <div class="institution-card ifs">
-                <h3>Sobre o IFS Campus Lagarto</h3>
-                <p>O Instituto Federal de Sergipe (IFS) - Campus Lagarto é uma instituição pública federal de ensino que oferece educação profissional e tecnológica em diversos níveis e modalidades.</p>
-                
-                <p>Inaugurado em [ANO], o campus se consolidou como referência em formação técnica e tecnológica no interior sergipano, contribuindo para o desenvolvimento regional através da qualificação profissional e da pesquisa aplicada.</p>
-
-                <div class="photo-placeholder">
-                    <span>🏫</span>
-                    <p>Foto do Campus IFS Lagarto</p>
-                    <small>(Adicionar foto posteriormente)</small>
-                </div>
-
-                <div class="info-grid">
-                    <div class="info-box">
-                        <h4>📚 Cursos Oferecidos</h4>
-                        <ul>
-                            <li>Técnico em Informática (Integrado)</li>
-                            <li>Técnico em Eletrotécnica</li>
-                            <li>Tecnologia em Gestão</li>
-                            <li>Tecnologia em Análise e Desenvolvimento de Sistemas</li>
-                            <li>[Adicionar outros cursos]</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-box">
-                        <h4>🔬 Áreas de Atuação</h4>
-                        <ul>
-                            <li>Tecnologia da Informação</li>
-                            <li>Automação Industrial</li>
-                            <li>Gestão Empresarial</li>
-                            <li>Pesquisa e Inovação</li>
-                            <li>Extensão Comunitária</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-box">
-                        <h4>🎯 Diferenciais</h4>
-                        <ul>
-                            <li>Ensino gratuito e de qualidade</li>
-                            <li>Infraestrutura moderna</li>
-                            <li>Professores qualificados</li>
-                            <li>Programas de assistência estudantil</li>
-                            <li>Conexão com o mercado de trabalho</li>
-                        </ul>
+            <div class="container">
+                <h2 style="color: var(--verde-ifs);">🟢 Instituto Federal de Sergipe</h2>
+                <div class="institution-card ifs">
+                    <h3>Sobre o IFS Campus Lagarto</h3>
+                    <p>O Instituto Federal de Sergipe (IFS) - Campus Lagarto é referência em educação profissional e tecnológica no interior sergipano.</p>
+                    <div class="photo-placeholder"><span>🏫</span><p>Foto do Campus IFS Lagarto</p></div>
+                    <div class="info-grid">
+                        <div class="info-box">
+                            <h4>📚 Cursos Oferecidos</h4>
+                            <ul>
+                                <li>Técnico em Informática</li>
+                                <li>Técnico em Eletrotécnica</li>
+                                <li>Tecnologia em Gestão</li>
+                                <li>Análise de Sistemas</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- PÁGINA UFS -->
         <div id="ufs" class="page">
-            <h2 style="color: var(--azul-ufs);">🔵 Universidade Federal de Sergipe - Campus Lagarto</h2>
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <h2 style="border: none; font-size: 3.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom: 0.5rem; color: white;">🔵 Universidade Federal de Sergipe</h2>
+                    <p style="color: white; font-size: 1.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.8);">Campus Prof. Antônio Garcia Filho - Lagarto</p>
+                </div>
             
-            <div class="institution-card ufs">
-                <h3>Sobre a UFS Campus Lagarto</h3>
-                <p>A Universidade Federal de Sergipe (UFS) - Campus de Lagarto é especializado na formação de profissionais da área da Saúde, com foco na qualificação para atuação no Sistema Único de Saúde (SUS).</p>
+                <div class="institution-card ufs">
+                    <h3>História e Estrutura</h3>
+                    <div class="img-grid">
+                        <img src="images/foto_ufs/WhatsApp Image 2026-01-17 at 20.42.18.jpeg" alt="Campus UFS" class="img-card">
+                        <img src="images/foto_ufs/entrada.jpeg" alt="Entrada UFS" class="img-card">
+                    </div>
+                    
+                    <p>O Campus de Lagarto representa um marco para o ensino superior no Nordeste. A criação do campus está diretamente ligada à implantação do <strong>Hospital Regional de Lagarto (HRG)</strong>, em 2010.</p>
+                    <p>Em 2014, o hospital foi doado à universidade, tornando-se o <strong>Hospital Universitário de Lagarto (HUL)</strong>. A instalação definitiva na sede própria ocorreu no segundo semestre de 2015.</p>
+
+                    <div class="img-grid">
+                        <img src="images/foto_ufs/centro de simulação de praticas.jpeg" alt="Centro de Simulação" class="img-card">
+                        <img src="images/foto_ufs/WhatsApp Image 2026-01-17 at 20.42.19 (1).jpeg" alt="Entrada Lateral" class="img-card">
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 4rem; text-align: center; color: white; text-shadow: 2px 2px 4px black;">📚 Cursos de Graduação</h2>
+                <p style="text-align: center; color: white; margin-bottom: 2rem;">Clique nos cursos para ver mais detalhes</p>
                 
-                <p>Inaugurado em 2009, o campus representa um importante investimento federal na interiorização da educação superior e na formação de recursos humanos para a saúde pública no estado de Sergipe.</p>
-
-                <div class="photo-placeholder">
-                    <span>🏥</span>
-                    <p>Foto do Campus UFS Lagarto</p>
-                    <small>(Adicionar foto posteriormente)</small>
-                </div>
-
-                <div class="info-grid">
-                    <div class="info-box">
-                        <h4>🏥 Cursos de Graduação</h4>
-                        <ul>
-                            <li>Enfermagem</li>
-                            <li>Fisioterapia</li>
-                            <li>Fonoaudiologia</li>
-                            <li>Medicina</li>
-                            <li>Nutrição</li>
-                            <li>Odontologia</li>
-                            <li>Terapia Ocupacional</li>
-                        </ul>
+                <div class="course-grid">
+                    <div class="course-card" onclick="openModal('medicina')">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=500&q=60" alt="Medicina">
+                        <div class="course-content"><h4>Medicina</h4><p>Formação humanizada voltada para o SUS e atenção integral.</p></div>
                     </div>
-
-                    <div class="info-box">
-                        <h4>🔬 Pesquisa e Extensão</h4>
-                        <ul>
-                            <li>Pesquisa em Saúde Coletiva</li>
-                            <li>Programas de extensão comunitária</li>
-                            <li>Atendimento à população local</li>
-                            <li>Projetos de saúde pública</li>
-                            <li>Integração ensino-serviço-comunidade</li>
-                        </ul>
+                    <div class="course-card" onclick="openModal('odontologia')">
+                        <img src="https://images.unsplash.com/photo-1588776813677-77aa37e84346?auto=format&fit=crop&w=500&q=60" alt="Odontologia">
+                        <div class="course-content"><h4>Odontologia</h4><p>Prática clínica integrada e promoção da saúde bucal.</p></div>
                     </div>
-
-                    <div class="info-box">
-                        <h4>💡 Impacto Regional</h4>
-                        <ul>
-                            <li>Formação de profissionais de saúde</li>
-                            <li>Atendimento à comunidade</li>
-                            <li>Desenvolvimento científico</li>
-                            <li>Fortalecimento do SUS</li>
-                            <li>Transformação social</li>
-                        </ul>
+                    <div class="course-card" onclick="openModal('enfermagem')">
+                        <img src="https://images.unsplash.com/photo-1584036561566-b93a90a6b262?auto=format&fit=crop&w=500&q=60" alt="Enfermagem">
+                        <div class="course-content"><h4>Enfermagem</h4><p>Gestão do cuidado com foco na atenção primária e hospitalar.</p></div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PÁGINA GALERIA -->
-        <div id="galeria" class="page">
-            <h2>📷 Galeria Fotográfica</h2>
-            
-            <div class="intro-section">
-                <p>Registro visual das instituições de ensino superior de Lagarto. As fotografias serão adicionadas conforme o desenvolvimento do projeto.</p>
-            </div>
-
-            <div class="galeria-grid">
-                <div class="photo-placeholder" style="height: 300px;">
-                    <span>📸</span>
-                    <p>IFS - Fachada Principal</p>
-                </div>
-
-                <div class="photo-placeholder" style="height: 300px;">
-                    <span>📸</span>
-                    <p>IFS - Laboratórios</p>
-                </div>
-
-                <div class="photo-placeholder" style="height: 300px;">
-                    <span>📸</span>
-                    <p>UFS - Campus</p>
-                </div>
-
-                <div class="photo-placeholder" style="height: 300px;">
-                    <span>📸</span>
-                    <p>UFS - Áreas de Saúde</p>
-                </div>
-
-                <div class="photo-placeholder" style="height: 300px;">
-                    <span>📸</span>
-                    <p>Vida Acadêmica</p>
-                </div>
-
-                <div class="photo-placeholder" style="height: 300px;">
-                    <span>📸</span>
-                    <p>Eventos e Extensão</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- PÁGINA SOBRE -->
-        <div id="sobre" class="page">
-            <h2>ℹ️ Sobre o Projeto</h2>
-            
-            <div class="about-section">
-                <h3 style="color: var(--cinza-escuro); font-size: 2rem; margin-bottom: 1.5rem;">🎓 Lagarto em Ação: Educação Superior</h3>
-                
-                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 1.5rem;">Este projeto é desenvolvido na disciplina de <strong>Gerência de Projetos</strong> do Instituto Federal de Sergipe - Campus Lagarto, com o objetivo de documentar e valorizar as instituições de ensino superior presentes no município.</p>
-                
-                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 2rem;">Nosso foco é mostrar como o IFS e a UFS contribuem para a transformação social, econômica e cultural de Lagarto e região.</p>
-
-                <h4 style="color: var(--cinza-escuro); margin-top: 2rem; margin-bottom: 1rem; font-size: 1.5rem;">👥 Equipe do Projeto</h4>
-                
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="avatar">JA</div>
-                        <h4>José Alexandre</h4>
-                        <p>Gerente do Projeto</p>
+                    <div class="course-card" onclick="openModal('fisioterapia')">
+                        <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=500&q=60" alt="Fisioterapia">
+                        <div class="course-content"><h4>Fisioterapia</h4><p>Reabilitação e prevenção de distúrbios cinéticos funcionais.</p></div>
                     </div>
-                    <div class="team-member">
-                        <div class="avatar">AR</div>
-                        <h4>Arthur Ribeiro</h4>
-                        <p>Desenvolvedor</p>
+                    <div class="course-card" onclick="openModal('nutricao')">
+                        <img src="https://images.unsplash.com/photo-1579165466741-7f35e4755652?auto=format&fit=crop&w=500&q=60" alt="Nutrição">
+                        <div class="course-content"><h4>Nutrição</h4><p>Segurança alimentar, nutrição clínica e saúde coletiva.</p></div>
                     </div>
-                    <div class="team-member">
-                        <div class="avatar">GS</div>
-                        <h4>Guilherme Silva</h4>
-                        <p>Desenvolvedor</p>
+                    <div class="course-card" onclick="openModal('farmacia')">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2187d80a000a?auto=format&fit=crop&w=500&q=60" alt="Farmácia">
+                        <div class="course-content"><h4>Farmácia</h4><p>Assistência farmacêutica, análises clínicas e medicamentos.</p></div>
                     </div>
-                    <div class="team-member">
-                        <div class="avatar">LE</div>
-                        <h4>Luis Eduardo</h4>
-                        <p>Desenvolvedor</p>
+                    <div class="course-card" onclick="openModal('fonoaudiologia')">
+                        <img src="https://images.unsplash.com/photo-1551893478-d726eaf0442c?auto=format&fit=crop&w=500&q=60" alt="Fonoaudiologia">
+                        <div class="course-content"><h4>Fonoaudiologia</h4><p>Saúde da comunicação humana, voz, audição e linguagem.</p></div>
                     </div>
-                    <div class="team-member">
-                        <div class="avatar">RP</div>
-                        <h4>Rauan Phelipe</h4>
-                        <p>Desenvolvedor</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="avatar">VS</div>
-                        <h4>Victor Silva</h4>
-                        <p>Desenvolvedor</p>
+                    <div class="course-card" onclick="openModal('terapia_ocupacional')">
+                        <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&w=500&q=60" alt="Terapia Ocupacional">
+                        <div class="course-content"><h4>Terapia Ocupacional</h4><p>Reabilitação através das atividades humanas e cotidiano.</p></div>
                     </div>
                 </div>
 
-                <p style="text-align: center; margin-top: 3rem; font-size: 1.1rem; color: #555;">
-                    <strong>Orientação:</strong> Profª. Rosana Rocha Siqueira<br>
-                    <strong>Instituição:</strong> Instituto Federal de Sergipe - Campus Lagarto<br>
-                    <strong>Período:</strong> 2025/2026
+                <h2 style="margin-top: 4rem; text-align: center; color: white; text-shadow: 2px 2px 4px black;">📍 Como Chegar</h2>
+                <div class="routes-container">
+                    <div class="route-card">
+                        <h4>🚌 Transporte e Acesso</h4>
+                        <p>O Campus está localizado na Rodovia Governador João Alves Filho, próximo ao Hospital Universitário.</p>
+                        
+                        <div class="info-box" style="margin-top: 1rem; border-left-color: var(--azul-ufs);">
+                            <p><strong>Linhas Intermunicipais:</strong> A principal forma de acesso é através da Coopertalse, que conecta Lagarto a outras cidades.</p>
+                            <p><strong>Transporte Local:</strong> Micro-ônibus ("Ligeirinhos") fazem o trajeto Terminal Rodoviário ↔ Campus UFS.</p>
+                        </div>
+
+                        <h5 style="margin-top: 1.5rem; color: var(--azul-ufs);">📸 Fotos do Transporte</h5>
+                        <div class="route-photos">
+                            <div style="background: #eee; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 2px dashed #ccc; color: #666; font-size: 0.8rem;">Ponto de Ônibus</div>
+                            <div style="background: #eee; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 2px dashed #ccc; color: #666; font-size: 0.8rem;">Transporte Coopertalse</div>
+                            <div style="background: #eee; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 2px dashed #ccc; color: #666; font-size: 0.8rem;">Estudantes no Ponto</div>
+                        </div>
+                    </div>
+                    
+                    <div class="route-card" style="padding: 0; overflow: hidden;">
+                        <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.416568894273!2d-37.6630006!3d-10.9238889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x710185906f33333%3A0xc39726330366606!2sUFS%20-%20Campus%20de%20Lagarto!5e0!3m2!1spt-BR!2sbr!4v1705600000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <p style="margin-top: 3rem; text-align: center; font-size: 0.9rem; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+                    📸 Fotos: Equipe Lagarto em Ação | 2026 | Campus UFS Lagarto
                 </p>
+            </div>
+        </div>
+
+        <div id="galeria" class="page">
+            <div class="container">
+                <h2>📷 Galeria Fotográfica</h2>
+                <div class="galeria-grid">
+                    <div class="photo-placeholder"><span>📸</span><p>IFS - Fachada</p></div>
+                    <div class="photo-placeholder"><span>📸</span><p>UFS - Campus</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sobre" class="page">
+            <div class="container">
+                <h2>ℹ️ Sobre o Projeto</h2>
+                <div class="about-section">
+                    <p>Projeto da disciplina de Gerência de Projetos do IFS.</p>
+                    <div class="team-grid">
+                        <div class="team-member"><div class="avatar">JA</div><h4>José Alexandre</h4><p>Gerente</p></div>
+                        </div>
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p style="font-size: 1.3rem; font-weight: bold;">🎓 Ensino Superior em Lagarto</p>
-        <p>Um projeto do IFS - Campus Lagarto</p>
-        <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">© 2026 - Todos os direitos reservados</p>
+        <p>🎓 Ensino Superior em Lagarto</p>
+        <p>© 2026 - Todos os direitos reservados</p>
     </footer>
 
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <div class="modal-header" id="modalHeader">
+                <h2 class="modal-title" id="modalTitle">Nome do Curso</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-info">
+                    <h3>Sobre o Curso</h3>
+                    <p id="modalDesc">Descrição...</p>
+                    <h3>Áreas de Atuação</h3>
+                    <p id="modalArea">Atuação...</p>
+                </div>
+                <div class="modal-gallery" id="modalGallery"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function showPage(pageId) {
-            // Esconde todas as páginas
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
+        const coursesData = {
+            'medicina': { title: "Medicina", desc: "Curso focado em metodologias ativas (PBL), inserindo o aluno na prática desde o início.", area: "Hospitais, UBS, Clínicas, Pesquisa.", image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80", gallery: [] },
+            'odontologia': { title: "Odontologia", desc: "Formação de cirurgiões-dentistas com prática na Clínica Escola que atende a comunidade.", area: "Consultórios, CEO, Hospitais.", image: "https://images.unsplash.com/photo-1588776813677-77aa37e84346?auto=format&fit=crop&w=800&q=80", gallery: [] },
+            'enfermagem': { title: "Enfermagem", desc: "Prepara profissionais para o cuidado e gestão em saúde em todas as fases da vida.", area: "Hospitais, PSF, Gestão.", image: "https://images.unsplash.com/photo-1584036561566-b93a90a6b262?auto=format&fit=crop&w=800&q=80", gallery: [] },
+            'fisioterapia': { title: "Fisioterapia", desc: "Estudo do movimento humano e reabilitação, integrado às clínicas e hospital universitário.", area: "Clínicas, Esporte, Saúde do Trabalhador.", image: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=800&q=80", gallery: [] },
+            'nutricao': { title: "Nutrição", desc: "Foco em segurança alimentar, nutrição clínica e saúde coletiva.", area: "Hospitais, Restaurantes, Saúde Pública.", image: "https://images.unsplash.com/photo-1579165466741-7f35e4755652?auto=format&fit=crop&w=800&q=80", gallery: [] },
+            'farmacia': { title: "Farmácia", desc: "Formação em análises clínicas, produção de medicamentos e assistência farmacêutica.", area: "Farmácias, Laboratórios, Indústria.", image: "https://images.unsplash.com/photo-1576091160550-2187d80a000a?auto=format&fit=crop&w=800&q=80", gallery: [] },
+            'fonoaudiologia': { title: "Fonoaudiologia", desc: "Cuidado com a comunicação humana, voz, audição e linguagem.", area: "Clínicas, Escolas, Hospitais.", image: "https://images.unsplash.com/photo-1551893478-d726eaf0442c?auto=format&fit=crop&w=800&q=80", gallery: [] },
+            'terapia_ocupacional': { title: "Terapia Ocupacional", desc: "Reabilitação e reintegração social através das atividades humanas.", area: "Centros de Reabilitação, Saúde Mental.", image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&w=800&q=80", gallery: [] }
+        };
+
+        function openModal(key) {
+            const data = coursesData[key];
+            if(!data) return;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalDesc').innerText = data.desc;
+            document.getElementById('modalArea').innerText = data.area;
+            document.getElementById('modalHeader').style.backgroundImage = `url('${data.image}')`;
             
-            // Mostra a página selecionada
-            document.getElementById(pageId).classList.add('active');
-            
-            // Atualiza o menu ativo
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Scroll suave para o topo
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const galleryDiv = document.getElementById('modalGallery');
+            galleryDiv.innerHTML = '';
+            // Exemplo de como adicionar fotos da galeria se existirem
+            if(data.gallery.length > 0) {
+                 data.gallery.forEach(src => {
+                    const img = document.createElement('img'); img.src = src; galleryDiv.appendChild(img);
+                 });
+            }
+
+            document.getElementById('courseModal').style.display = "block";
         }
 
-        // Navegação por URL hash
-        window.addEventListener('load', () => {
-            const hash = window.location.hash.substring(1);
-            if (hash && document.getElementById(hash)) {
-                showPage(hash);
-            }
-        });
+        function closeModal() { document.getElementById('courseModal').style.display = "none"; }
+        window.onclick = function(e) { if (e.target == document.getElementById('courseModal')) closeModal(); }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            event.target.classList.add('active');
+            if (pageId === 'ufs') document.body.classList.add('ufs-active');
+            else document.body.classList.remove('ufs-active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        window.addEventListener('load', () => showPage('home'));
     </script>
 </body>
 </html>
