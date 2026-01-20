@@ -14,13 +14,16 @@
 
         :root {
             --verde-ifs: #1e7b3f;
+            --verde-ifs-dark: #14522a;
             --azul-ufs: #004e8c;
+            --azul-ufs-dark: #003366;
             --dourado: #fdb714;
             --cinza-escuro: #2d2d2d;
+            --branco-vidro: rgba(255, 255, 255, 0.95);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
             line-height: 1.7;
             color: #333;
             background: #f5f5f5;
@@ -28,9 +31,21 @@
             overflow-x: hidden;
         }
 
-        /* CONFIGURAÇÃO DO FUNDO IMERSIVO NA UFS */
+        /* --- CONFIGURAÇÕES DE FUNDO --- */
+        
+        /* Fundo Home - Imagem da Praça com Overlay Escuro Gradiente */
+        body.home-active {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%),
+                url('images/foto_praca.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        /* Fundo UFS */
         body.ufs-active {
-            background: linear-gradient(rgba(0, 50, 100, 0.85), rgba(0, 30, 60, 0.9)),
+            background: linear-gradient(rgba(0, 50, 100, 0.85), rgba(0, 30, 60, 0.95)),
                 url('images/foto_ufs/entrada.jpeg');
             background-size: cover;
             background-position: center;
@@ -38,7 +53,201 @@
             color: white;
         }
 
-        /* HEADER & NAV */
+        /* --- HEADER & NAV TRANSPARENTES NA HOME/UFS --- */
+        body.home-active header,
+        body.ufs-active header {
+            background: transparent;
+            box-shadow: none;
+            padding-top: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.home-active nav,
+        body.ufs-active nav {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+        }
+        
+        body.home-active footer,
+        body.ufs-active footer {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- ESTILOS EXCLUSIVOS DA NOVA HOME (TEXTO FOCADO) --- */
+        
+        /* Hero Section */
+        .hero-home {
+            text-align: center;
+            padding: 5rem 1rem 7rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-tag {
+            background: rgba(253, 183, 20, 0.2);
+            color: var(--dourado);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--dourado);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            background: linear-gradient(to right, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 750px;
+            margin: 0 auto 3rem auto;
+            font-weight: 300;
+        }
+
+        /* Botões da Home */
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-home {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-ifs {
+            background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--verde-ifs-dark) 100%);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn-ufs {
+            background: linear-gradient(135deg, var(--azul-ufs) 0%, var(--azul-ufs-dark) 100%);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            filter: brightness(1.1);
+        }
+
+        /* Cards de Características (Features) */
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: -3rem; /* Sobrepõe levemente o hero */
+            position: relative;
+            z-index: 2;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: left;
+            transition: transform 0.3s ease, background 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--dourado);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            border-radius: 50%;
+            color: var(--dourado);
+        }
+
+        .feature-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Seção "Sobre a Cidade" - Agora focada em texto */
+        .city-section {
+            background: var(--branco-vidro);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            color: #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: center; /* Centraliza o texto */
+            max-width: 900px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .city-text h2 {
+            color: var(--cinza-escuro);
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--dourado);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .city-text p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- FIM DOS ESTILOS EXCLUSIVOS HOME --- */
+
+        /* HEADER & NAV GERAL */
         header {
             background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--azul-ufs) 100%);
             color: white;
@@ -46,12 +255,6 @@
             text-align: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: background 0.3s;
-        }
-
-        body.ufs-active header {
-            background: transparent;
-            box-shadow: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         h1 {
@@ -74,12 +277,6 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             transition: background 0.3s;
-        }
-
-        body.ufs-active nav {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         nav ul {
@@ -134,17 +331,16 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ESTILOS GERAIS PARA AS OUTRAS ABAS (MANTIDOS) */
         h2 {
             font-size: 2.5rem;
             color: var(--cinza-escuro);
@@ -152,21 +348,10 @@
             padding-bottom: 1rem;
             border-bottom: 4px solid var(--dourado);
         }
+        
+        body.ufs-active h2 { color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
 
-        body.ufs-active h2 {
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        /* CARDS GERAIS */
-        .intro-section,
-        .institution-card,
-        .info-box,
-        .team-member,
-        .about-section,
-        .course-card,
-        .route-card,
-        .gallery-section {
+        .intro-section, .institution-card, .info-box, .team-member, .about-section, .course-card, .route-card, .gallery-section {
             background: white;
             color: #333;
             padding: 2rem;
@@ -175,725 +360,118 @@
             margin-bottom: 3rem;
         }
 
-        body.ufs-active .intro-section,
-        body.ufs-active .institution-card,
-        body.ufs-active .info-box,
-        body.ufs-active .course-card,
-        body.ufs-active .route-card,
-        body.ufs-active .gallery-section {
-            background: rgba(255, 255, 255, 0.95);
+        body.ufs-active .intro-section, body.ufs-active .institution-card, body.ufs-active .info-box, body.ufs-active .course-card, body.ufs-active .route-card, body.ufs-active .gallery-section {
+            background: var(--branco-vidro);
             backdrop-filter: blur(5px);
         }
-
-        body.ufs-active .institution-card h3,
-        body.ufs-active .institution-card p,
-        body.ufs-active .info-box h4,
-        body.ufs-active .info-box li,
-        body.ufs-active .course-card h4,
-        body.ufs-active .course-card p {
-            color: #333;
-            text-shadow: none;
+        
+        body.ufs-active .institution-card h3, body.ufs-active .institution-card p, body.ufs-active .info-box h4, body.ufs-active .info-box li, body.ufs-active .course-card h4, body.ufs-active .course-card p {
+            color: #333; text-shadow: none;
         }
 
-        .institution-card.ifs h3 {
-            color: var(--verde-ifs) !important;
-        }
+        .institution-card.ifs h3 { color: var(--verde-ifs) !important; }
+        .institution-card.ufs h3 { color: var(--azul-ufs) !important; }
+        .institution-card.ifs { border-top: 6px solid var(--verde-ifs); }
+        .institution-card.ufs { border-top: 6px solid var(--azul-ufs); }
 
-        .institution-card.ufs h3 {
-            color: var(--azul-ufs) !important;
-        }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .info-box { border-left: 5px solid var(--dourado); }
+        .info-box ul { list-style: none; padding-left: 0; }
+        .info-box li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; }
+        .info-box li:before { content: "▸"; position: absolute; left: 0; color: var(--dourado); font-weight: bold; }
 
-        .institution-card.ifs {
-            border-top: 6px solid var(--verde-ifs);
-        }
-
-        .institution-card.ufs {
-            border-top: 6px solid var(--azul-ufs);
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .info-box {
-            border-left: 5px solid var(--dourado);
-        }
-
-        .info-box ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .info-box li {
-            padding: 0.5rem 0 0.5rem 1.5rem;
-            position: relative;
-        }
-
-        .info-box li:before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: var(--dourado);
-            font-weight: bold;
-        }
-
-        /* CURSOS GRID */
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .course-card {
-            padding: 0;
-            overflow: hidden;
-            transition: transform 0.3s;
-            border-top: 4px solid var(--azul-ufs);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 78, 140, 0.3);
-        }
-
-        .course-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            transition: opacity 0.3s;
-        }
-
-        .course-content {
-            padding: 1.5rem;
-        }
-
-        .course-card h4 {
-            color: var(--azul-ufs) !important;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .course-card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 0;
-        }
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .course-card { padding: 0; overflow: hidden; transition: transform 0.3s; border-top: 4px solid var(--azul-ufs); cursor: pointer; position: relative; }
+        .course-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 78, 140, 0.3); }
+        .course-card img { width: 100%; height: 150px; object-fit: cover; transition: opacity 0.3s; }
+        .course-content { padding: 1.5rem; }
+        .course-card h4 { color: var(--azul-ufs) !important; margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .course-card p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 0; }
 
         /* MODALS */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            animation: fadeInModal 0.3s;
-        }
-
-        @keyframes fadeInModal {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 2% auto;
-            padding: 0;
-            border: 1px solid #888;
-            width: 90%;
-            max-width: 1000px;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
-            color: #333 !important;
-        }
-
-        .close-btn {
-            color: white;
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 35px;
-            font-weight: bold;
-            z-index: 10;
-            cursor: pointer;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-header {
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            padding: 2rem;
-        }
-
-        .modal-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0, 78, 140, 0.9), transparent);
-        }
-
-        .modal-title {
-            position: relative;
-            color: white;
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-body {
-            padding: 2.5rem;
-        }
-
-        .modal-info h3 {
-            color: var(--azul-ufs);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--dourado);
-            display: inline-block;
-            font-size: 1.5rem;
-        }
-
-        .modal-info p {
-            color: #444;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            text-align: justify;
-        }
-
-        /* GALERIA DO MODAL */
-        .modal-gallery-container {
-            margin-top: 3rem;
-            border-top: 1px solid #eee;
-            padding-top: 2rem;
-        }
-
-        .modal-gallery-title {
-            font-size: 1.8rem;
-            color: var(--azul-ufs);
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .modal-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-        }
-
-        .modal-gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .modal-gallery img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.4s;
-            display: block;
-        }
-
-        .modal-gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .modal-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            font-size: 0.85rem;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .modal-gallery-item:hover .modal-caption {
-            transform: translateY(0);
-        }
-
-        /* MODAL DE IMAGEM FULLSCREEN */
-        #imageModal .modal-content {
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            width: auto;
-            max-width: 95%;
-            height: 100%;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #imageModal img {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-        }
-
-        /* DESCRIÇÃO NO ZOOM */
-        #imageModalCaption {
-            color: white;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            text-align: center;
-            text-shadow: 1px 1px 4px black;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-        }
-
-        /* ROTAS E GALERIA */
-        .routes-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .route-card h4 {
-            color: var(--azul-ufs);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .map-frame {
-            width: 100%;
-            height: 350px;
-            border: 0;
-            border-radius: 10px;
-            border: 4px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .route-photos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .route-photos img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #eee;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .route-photos img:hover {
-            transform: scale(1.05);
-        }
-
-        /* IMAGENS GERAIS */
-        .img-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .img-wrapper {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-
-        .img-card {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            border: 4px solid white;
-            transition: transform 0.3s;
-            cursor: pointer;
-            display: block;
-        }
-
-        .img-card:hover {
-            transform: scale(1.02);
-        }
-
-        .img-credit {
-            font-size: 0.85rem;
-            color: #555;
-            margin-top: 0.8rem;
-            font-weight: 500;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 0.5rem;
-            border-radius: 8px;
-        }
-
-        .photo-placeholder {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: #666;
-            margin: 2rem 0;
-            border: 3px dashed #999;
-        }
-
-        .galeria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .photo-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .photo-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .photo-item img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .photo-caption {
-            background: rgba(0, 0, 0, 0.85);
-            color: white;
-            padding: 1.2rem;
-            text-align: center;
-        }
-
-        .photo-caption .title {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .photo-caption .credit {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            color: var(--dourado);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .team-member .avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--azul-ufs) 100%);
-            color: white;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        footer {
-            background: var(--cinza-escuro);
-            color: white;
-            text-align: center;
-            padding: 3rem 1rem;
-            margin-top: 5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        body.ufs-active footer {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-        }
-
-        /* INTRODUÇÃO IMAGENS */
-        .intro-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .intro-image-card {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            border: 3px solid white;
-            background: white;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .intro-image-card:hover {
-            scale: 1.02;
-        }
-
-        .intro-image-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .intro-credit {
-            background: var(--cinza-escuro);
-            color: var(--dourado);
-            font-size: 0.75rem;
-            text-align: center;
-            padding: 0.4rem;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-
-        /* STORY BLOCK */
-        .story-block {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 4rem;
-        }
-
-        .story-block.reverse {
-            direction: rtl;
-        }
-
-        .story-block.reverse>* {
-            direction: ltr;
-        }
-
-        .story-text h4 {
-            color: var(--azul-ufs);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--dourado);
-            padding-left: 1rem;
-        }
-
-        .story-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #444;
-            text-align: justify;
-        }
-
-        .story-img-wrapper {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            border: 4px solid white;
-            transition: transform 0.3s;
-        }
-
-        .story-img-wrapper:hover {
-            transform: scale(1.02);
-        }
-
-        .story-img-wrapper img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            display: block;
-            cursor: pointer;
-        }
-
-        /* --- NOVO ESTILO: TOUR PELO CAMPUS (MOSAICO PROFISSIONAL) --- */
-        .campus-tour-section {
-            margin: 5rem 0;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .campus-tour-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            /* Espaço uniforme */
-        }
-
-        .tour-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            /* Bordas suaves */
-            aspect-ratio: 4/3;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .tour-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .tour-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-            display: block;
-        }
-
-        .tour-item:hover img {
-            transform: scale(1.1);
-            /* Zoom suave */
-        }
-
-        /* Overlay Profissional com Gradiente */
-        .tour-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-            color: white;
-            padding: 1.2rem;
-            transform: translateY(100%);
-            /* Escondido por padrão */
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .tour-item:hover .tour-overlay {
-            transform: translateY(0);
-            /* Aparece ao passar o mouse */
-        }
-
-        .tour-overlay span {
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-shadow: 1px 1px 2px black;
-        }
-
-        .tour-overlay small {
-            font-size: 0.8rem;
-            color: var(--dourado);
-            margin-top: 0.3rem;
-        }
-
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); animation: fadeInModal 0.3s; }
+        @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background-color: #fefefe; margin: 2% auto; padding: 0; border: 1px solid #888; width: 90%; max-width: 1000px; border-radius: 15px; overflow: hidden; position: relative; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); color: #333 !important; }
+        .close-btn { color: white; position: absolute; top: 15px; right: 25px; font-size: 35px; font-weight: bold; z-index: 10; cursor: pointer; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); }
+        .modal-header { height: 250px; background-size: cover; background-position: center; position: relative; display: flex; align-items: flex-end; padding: 2rem; }
+        .modal-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0, 78, 140, 0.9), transparent); }
+        .modal-title { position: relative; color: white; font-size: 2.5rem; font-weight: bold; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
+        .modal-body { padding: 2.5rem; }
+        .modal-info h3 { color: var(--azul-ufs); margin-bottom: 1rem; border-bottom: 2px solid var(--dourado); display: inline-block; font-size: 1.5rem; }
+        .modal-info p { color: #444; margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8; text-align: justify; }
+
+        .modal-gallery-container { margin-top: 3rem; border-top: 1px solid #eee; padding-top: 2rem; }
+        .modal-gallery-title { font-size: 1.8rem; color: var(--azul-ufs); margin-bottom: 1.5rem; font-weight: bold; text-align: center; }
+        .modal-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+        .modal-gallery-item { position: relative; overflow: hidden; border-radius: 8px; cursor: pointer; }
+        .modal-gallery img { width: 100%; height: 300px; object-fit: cover; transition: transform 0.4s; display: block; }
+        .modal-gallery-item:hover img { transform: scale(1.1); }
+        .modal-caption { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); color: white; padding: 1rem; text-align: center; font-size: 0.85rem; transform: translateY(100%); transition: transform 0.3s; }
+        .modal-gallery-item:hover .modal-caption { transform: translateY(0); }
+
+        #imageModal .modal-content { background: transparent; border: none; box-shadow: none; width: auto; max-width: 95%; height: 100%; margin: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        #imageModal img { max-width: 100%; max-height: 80vh; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); }
+        #imageModalCaption { color: white; font-size: 1.1rem; margin-top: 1rem; text-align: center; text-shadow: 1px 1px 4px black; background: rgba(0, 0, 0, 0.6); padding: 0.8rem 1.5rem; border-radius: 50px; }
+
+        .routes-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .route-card h4 { color: var(--azul-ufs); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .map-frame { width: 100%; height: 350px; border: 0; border-radius: 10px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
+        .route-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .route-photos img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border: 2px solid #eee; cursor: pointer; transition: transform 0.3s; }
+        .route-photos img:hover { transform: scale(1.05); }
+
+        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .photo-item { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); cursor: pointer; transition: transform 0.3s; }
+        .photo-item:hover { transform: translateY(-5px); }
+        .photo-item img { width: 100%; height: 320px; object-fit: cover; display: block; }
+        .photo-caption { background: rgba(0, 0, 0, 0.85); color: white; padding: 1.2rem; text-align: center; }
+        .photo-caption .title { font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .photo-caption .credit { font-size: 0.85rem; opacity: 0.9; color: var(--dourado); }
+
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; text-align: center; margin-top: 2rem; }
+        .team-member .avatar { width: 80px; height: 80px; background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--azul-ufs) 100%); color: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; }
+
+        footer { background: var(--cinza-escuro); color: white; text-align: center; padding: 3rem 1rem; margin-top: 5rem; position: relative; z-index: 2; }
+        
+        .story-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 4rem; }
+        .story-block.reverse { direction: rtl; }
+        .story-block.reverse>* { direction: ltr; }
+        .story-text h4 { color: var(--azul-ufs); font-size: 1.8rem; margin-bottom: 1rem; border-left: 4px solid var(--dourado); padding-left: 1rem; }
+        .story-text p { font-size: 1.1rem; line-height: 1.8; color: #444; text-align: justify; }
+        .story-img-wrapper { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); border: 4px solid white; transition: transform 0.3s; }
+        .story-img-wrapper:hover { transform: scale(1.02); }
+        .story-img-wrapper img { width: 100%; height: 350px; object-fit: cover; display: block; cursor: pointer; }
+        .img-credit { font-size: 0.85rem; color: #555; margin-top: 0.8rem; font-weight: 500; text-align: center; background: rgba(255, 255, 255, 0.9); padding: 0.5rem; border-radius: 8px; }
+
+        .campus-tour-section { margin: 5rem 0; padding-top: 3rem; border-top: 1px solid rgba(255, 255, 255, 0.2); }
+        .campus-tour-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        .tour-item { position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 4/3; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; }
+        .tour-item:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); }
+        .tour-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+        .tour-item:hover img { transform: scale(1.1); }
+        .tour-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent); color: white; padding: 1.2rem; transform: translateY(100%); transition: transform 0.3s ease; display: flex; flex-direction: column; justify-content: flex-end; }
+        .tour-item:hover .tour-overlay { transform: translateY(0); }
+        .tour-overlay span { font-weight: bold; font-size: 1.1rem; text-shadow: 1px 1px 2px black; }
+        .tour-overlay small { font-size: 0.8rem; color: var(--dourado); margin-top: 0.3rem; }
 
         @media (max-width: 968px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-            }
-
-            nav a {
-                text-align: center;
-                padding: 1rem;
-            }
-
-            .info-grid,
-            .galeria-grid,
-            .team-grid,
-            .img-grid,
-            .course-grid,
-            .routes-container,
-            .modal-body,
-            .intro-images,
-            .story-block,
-            .modal-gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-header {
-                height: 150px;
-            }
-
-            .modal-title {
-                font-size: 1.8rem;
-            }
-
-            body.ufs-active {
-                background-attachment: scroll;
-            }
-
-            .img-card,
-            .story-img-wrapper img {
-                height: 250px;
-            }
-
-            .story-block {
-                gap: 1rem;
-                margin-bottom: 3rem;
-            }
-
-            .story-img-wrapper {
-                order: -1;
-            }
-
-            .campus-tour-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .tour-item {
-                aspect-ratio: 16/9;
-            }
+            h1 { font-size: 2rem; }
+            nav ul { flex-direction: column; }
+            nav a { text-align: center; padding: 1rem; }
+            .info-grid, .galeria-grid, .team-grid, .course-grid, .routes-container, .modal-body, .story-block, .modal-gallery, .features-container, .city-grid, .city-gallery { grid-template-columns: 1fr; }
+            .modal-header { height: 150px; }
+            .modal-title { font-size: 1.8rem; }
+            body.ufs-active { background-attachment: scroll; }
+            .story-img-wrapper img { height: 250px; }
+            .story-block { gap: 1rem; margin-bottom: 3rem; }
+            .story-img-wrapper { order: -1; }
+            .hero-title { font-size: 2.5rem; }
+            .city-section { padding: 1.5rem; margin-top: 2rem; }
         }
     </style>
 </head>
 
-<body>
+<body class="home-active">
     <header>
         <h1>🎓 Ensino Superior em Lagarto</h1>
         <p class="subtitle">Educação, Ciência e Transformação Social</p>
@@ -911,50 +489,46 @@
 
     <main>
         <div id="home" class="page active">
-            <div class="container">
-                <h2>🌆 Lagarto: Polo de Educação Superior</h2>
-                <div class="intro-section">
-                    <p>Lagarto, município sergipano com aproximadamente 105 mil habitantes, destaca-se não apenas por
-                        sua tradição agropecuária e industrial, mas também como importante <strong>polo de educação
-                            superior no interior do estado</strong>.</p>
-                    <p>A presença de instituições federais de ensino transformou a cidade em um centro de formação
-                        acadêmica, pesquisa científica e desenvolvimento tecnológico, atraindo estudantes de toda a
-                        região e promovendo impacto socioeconômico significativo.</p>
+            
+            <div class="hero-home">
+                <span class="hero-tag">📍 Lagarto - Sergipe</span>
+                <h2 class="hero-title">O Futuro da Educação <br>Começa Aqui</h2>
+                <p class="hero-subtitle">Descubra um ecossistema acadêmico de excelência. Duas instituições federais transformando vidas, impulsionando a ciência e desenvolvendo o interior sergipano.</p>
+                
+                <div class="hero-actions">
+                    <button onclick="showPage('ifs')" class="btn-home btn-ifs">Explorar IFS ➜</button>
+                    <button onclick="showPage('ufs')" class="btn-home btn-ufs">Explorar UFS ➜</button>
+                </div>
+            </div>
 
-                    <div class="intro-images" style="margin-top: 2rem;">
-                        <div class="intro-image-card"
-                            onclick="openImage(this.querySelector('img').src, 'Monumento de entrada em Lagarto')">
-                            <img src="images/20260111_174333.jpg" alt="Monumento de entrada em Lagarto">
-                            <div class="intro-credit">Foto: Elisa Gabriela Pereira Nascimento | 2026</div>
-                        </div>
-                        <div class="intro-image-card"
-                            onclick="openImage(this.querySelector('img').src, 'Terminal Rodoviário Coopertalse')">
-                            <img src="images/20260111_173308.jpg" alt="Terminal Rodoviário Coopertalse">
-                            <div class="intro-credit">Foto: Elisa Gabriela Pereira Nascimento | 2026</div>
-                        </div>
+            <div class="container" style="padding-top: 0;">
+                
+                <div class="features-container">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Polo Universitário</h3>
+                        <p>Lagarto se consolidou como referência no Nordeste, atraindo estudantes de diversas regiões para seus cursos de alta qualidade.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔬</div>
+                        <h3>Ciência e Inovação</h3>
+                        <p>Pesquisa aplicada e desenvolvimento tecnológico nas áreas de Saúde, Indústria e Gestão.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Ensino Gratuito</h3>
+                        <p>Acesso democrático a uma educação pública, gratuita e de qualidade socialmente referenciada.</p>
                     </div>
                 </div>
 
-                <div class="info-grid">
-                    <div class="institution-card ifs">
-                        <h3>🟢 Instituto Federal de Sergipe</h3>
-                        <p><strong>Campus Lagarto</strong></p>
-                        <p>Ensino técnico integrado, graduações tecnológicas e pós-graduação nas áreas de Tecnologia,
-                            Gestão e Indústria.</p>
-                        <p style="margin-top: 1.5rem;"><a href="#ifs" onclick="showPage('ifs')"
-                                style="background: var(--verde-ifs); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold;">Saiba
-                                Mais →</a></p>
-                    </div>
-                    <div class="institution-card ufs">
-                        <h3>🔵 Universidade Federal de Sergipe</h3>
-                        <p><strong>Campus de Lagarto</strong></p>
-                        <p>Cursos de graduação na área da Saúde, formando profissionais para o SUS e pesquisa aplicada.
-                        </p>
-                        <p style="margin-top: 1.5rem;"><a href="#ufs" onclick="showPage('ufs')"
-                                style="background: var(--azul-ufs); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold;">Saiba
-                                Mais →</a></p>
+                <div class="city-section">
+                    <div class="city-text">
+                        <h2>A Cidade Universitária</h2>
+                        <p>Com aproximadamente 105 mil habitantes, Lagarto vive um novo momento histórico impulsionado pela educação. A chegada das universidades federais transformou a dinâmica urbana, criando um ambiente que respira conhecimento e desenvolvimento.</p>
+                        <p>O município destaca-se não apenas por sua tradição agropecuária, mas como um vibrante <strong>polo de formação acadêmica</strong>. Estudantes, professores e pesquisadores movimentam a economia, a cultura e trazem novos horizontes para o interior de Sergipe, consolidando o compromisso com o futuro da região.</p>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -986,8 +560,7 @@
         <div id="ufs" class="page">
             <div class="container">
                 <div style="text-align: center; margin-bottom: 3rem;">
-                    <h2
-                        style="border: none; font-size: 3.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom: 0.5rem; color: white;">
+                    <h2 style="border: none; font-size: 3.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom: 0.5rem; color: white;">
                         🔵 Universidade Federal de Sergipe</h2>
                     <p style="color: white; font-size: 1.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.8);">Campus Prof.
                         Antônio Garcia Filho - Lagarto</p>
@@ -1017,7 +590,8 @@
                             <p>A criação do campus está intrinsecamente ligada à implantação do <strong>Hospital
                                     Regional de Lagarto</strong>. Em 2014, o hospital foi federalizado, tornando-se o
                                 <strong>Hospital Universitário de Lagarto (HUL)</strong>, garantindo campo de prática
-                                para os estudantes.</p>
+                                para os estudantes.
+                            </p>
                         </div>
                         <div class="story-img-wrapper"
                             onclick="openImage('images/foto_ufs/WhatsApp Image 2026-01-17 at 20.42.18.jpeg', 'Campus UFS Vista')">
@@ -1031,7 +605,8 @@
                             <h4>Sede Própria e Inovação</h4>
                             <p>O campus conta com uma arquitetura moderna e equipamentos de ponta. Destaque para o
                                 <strong>Centro de Simulações e Práticas</strong>, onde alunos treinam em manequins de
-                                alta fidelidade antes do contato com pacientes reais.</p>
+                                alta fidelidade antes do contato com pacientes reais.
+                            </p>
                         </div>
                         <div class="story-img-wrapper"
                             onclick="openImage('images/foto_ufs/centro de simulação de praticas.jpeg', 'Centro de Simulação')">
@@ -1413,11 +988,24 @@
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            event.target.classList.add('active');
-            if (pageId === 'ufs') document.body.classList.add('ufs-active');
-            else document.body.classList.remove('ufs-active');
+            
+            // Corrige o highlight do menu ao clicar nos botões do Hero
+            const navLink = document.querySelector(`a[href="#${pageId}"]`);
+            if(navLink) navLink.classList.add('active');
+
+            if (pageId === 'ufs') {
+                document.body.classList.add('ufs-active');
+                document.body.classList.remove('home-active');
+            } else if (pageId === 'home') {
+                document.body.classList.add('home-active');
+                document.body.classList.remove('ufs-active');
+            } else {
+                document.body.classList.remove('ufs-active');
+                document.body.classList.remove('home-active');
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
         window.addEventListener('load', () => showPage('home'));
     </script>
 </body>
