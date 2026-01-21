@@ -53,9 +53,21 @@
             color: white;
         }
 
-        /* --- HEADER & NAV TRANSPARENTES NA HOME/UFS --- */
+        /* Fundo IFS (Adicionado para manter padrão quando estiver na aba IFS) */
+        body.ifs-active {
+            background: linear-gradient(rgba(20, 82, 42, 0.9), rgba(10, 50, 20, 0.95)),
+                url('images/foto_ifs/entrada_ifs.jpg'); /* Sugestão de nome */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+
+        /* --- HEADER & NAV TRANSPARENTES NA HOME/UFS/IFS --- */
         body.home-active header,
-        body.ufs-active header {
+        body.ufs-active header,
+        body.ifs-active header {
             background: transparent;
             box-shadow: none;
             padding-top: 3rem;
@@ -63,7 +75,8 @@
         }
 
         body.home-active nav,
-        body.ufs-active nav {
+        body.ufs-active nav,
+        body.ifs-active nav {
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -72,7 +85,8 @@
         }
 
         body.home-active footer,
-        body.ufs-active footer {
+        body.ufs-active footer,
+        body.ifs-active footer {
             background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(5px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -365,7 +379,8 @@
             border-bottom: 4px solid var(--dourado);
         }
 
-        body.ufs-active h2 {
+        /* Estilo para titulos UFS e IFS quando background ativo */
+        body.ufs-active h2, body.ifs-active h2 {
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
@@ -386,12 +401,19 @@
             margin-bottom: 3rem;
         }
 
+        /* Efeito de vidro para UFS e IFS */
         body.ufs-active .intro-section,
         body.ufs-active .institution-card,
         body.ufs-active .info-box,
         body.ufs-active .course-card,
         body.ufs-active .route-card,
-        body.ufs-active .gallery-section {
+        body.ufs-active .gallery-section,
+        body.ifs-active .intro-section,
+        body.ifs-active .institution-card,
+        body.ifs-active .info-box,
+        body.ifs-active .course-card,
+        body.ifs-active .route-card,
+        body.ifs-active .gallery-section {
             background: var(--branco-vidro);
             backdrop-filter: blur(5px);
         }
@@ -401,7 +423,13 @@
         body.ufs-active .info-box h4,
         body.ufs-active .info-box li,
         body.ufs-active .course-card h4,
-        body.ufs-active .course-card p {
+        body.ufs-active .course-card p,
+        body.ifs-active .institution-card h3,
+        body.ifs-active .institution-card p,
+        body.ifs-active .info-box h4,
+        body.ifs-active .info-box li,
+        body.ifs-active .course-card h4,
+        body.ifs-active .course-card p {
             color: #333;
             text-shadow: none;
         }
@@ -462,14 +490,25 @@
             padding: 0;
             overflow: hidden;
             transition: transform 0.3s;
-            border-top: 4px solid var(--azul-ufs);
             cursor: pointer;
             position: relative;
+        }
+        
+        /* Borda especifica para cada instituicao nos cards de curso */
+        .page#ufs .course-card {
+             border-top: 4px solid var(--azul-ufs);
+        }
+        .page#ifs .course-card {
+             border-top: 4px solid var(--verde-ifs);
         }
 
         .course-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 78, 140, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .page#ifs .course-card:hover {
+             box-shadow: 0 10px 25px rgba(30, 123, 63, 0.3);
         }
 
         .course-card img {
@@ -483,8 +522,14 @@
             padding: 1.5rem;
         }
 
-        .course-card h4 {
+        .page#ufs .course-card h4 {
             color: var(--azul-ufs) !important;
+        }
+        .page#ifs .course-card h4 {
+            color: var(--verde-ifs) !important;
+        }
+
+        .course-card h4 {
             margin-bottom: 0.5rem;
             font-size: 1.2rem;
         }
@@ -563,8 +608,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0, 78, 140, 0.9), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
         }
+        
+        /* Ajuste do gradiente do modal dependendo da instituicao ativa (via JS ou CSS generico) */
+        /* Aqui deixamos generico preto/transparente que funciona pra ambos */
 
         .modal-title {
             position: relative;
@@ -579,12 +627,16 @@
         }
 
         .modal-info h3 {
-            color: var(--azul-ufs);
+            color: #333; /* Default fallback */
             margin-bottom: 1rem;
             border-bottom: 2px solid var(--dourado);
             display: inline-block;
             font-size: 1.5rem;
         }
+        
+        body.ufs-active .modal-info h3 { color: var(--azul-ufs); }
+        body.ifs-active .modal-info h3 { color: var(--verde-ifs); }
+
 
         .modal-info p {
             color: #444;
@@ -602,11 +654,15 @@
 
         .modal-gallery-title {
             font-size: 1.8rem;
-            color: var(--azul-ufs);
+            color: #333;
             margin-bottom: 1.5rem;
             font-weight: bold;
             text-align: center;
         }
+        
+        body.ufs-active .modal-gallery-title { color: var(--azul-ufs); }
+        body.ifs-active .modal-gallery-title { color: var(--verde-ifs); }
+
 
         .modal-gallery {
             display: grid;
@@ -690,12 +746,14 @@
         }
 
         .route-card h4 {
-            color: var(--azul-ufs);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
+        
+        .page#ufs .route-card h4 { color: var(--azul-ufs); }
+        .page#ifs .route-card h4 { color: var(--verde-ifs); }
 
         .map-frame {
             width: 100%;
@@ -822,12 +880,15 @@
         }
 
         .story-text h4 {
-            color: var(--azul-ufs);
             font-size: 1.8rem;
             margin-bottom: 1rem;
             border-left: 4px solid var(--dourado);
             padding-left: 1rem;
         }
+        
+        .page#ufs .story-text h4 { color: var(--azul-ufs); }
+        .page#ifs .story-text h4 { color: var(--verde-ifs); }
+
 
         .story-text p {
             font-size: 1.1rem;
@@ -974,7 +1035,7 @@
                 font-size: 1.8rem;
             }
 
-            body.ufs-active {
+            body.ufs-active, body.ifs-active {
                 background-attachment: scroll;
             }
 
@@ -1080,26 +1141,193 @@
 
         <div id="ifs" class="page">
             <div class="container">
-                <h2 style="color: var(--verde-ifs);">🟢 Instituto Federal de Sergipe</h2>
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <h2
+                        style="border: none; font-size: 3.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom: 0.5rem; color: white;">
+                        🟢 Instituto Federal de Sergipe</h2>
+                    <p style="color: white; font-size: 1.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.8);">Campus Lagarto</p>
+                </div>
+
                 <div class="institution-card ifs">
-                    <h3>Sobre o IFS Campus Lagarto</h3>
-                    <p>O Instituto Federal de Sergipe (IFS) - Campus Lagarto é referência em educação profissional e
-                        tecnológica no interior sergipano.</p>
-                    <div class="photo-placeholder"><span>🏫</span>
-                        <p>Foto do Campus IFS Lagarto</p>
+                    <h3 style="text-align: center; margin-bottom: 3rem;">IFS – Campus Lagarto: Antes e Depois</h3>
+
+                    <div class="story-block">
+                        <div class="story-text">
+                            <h4>Origem e Primeiros Passos (1995)</h4>
+                            <p>A história do Instituto Federal de Sergipe – Campus Lagarto reflete um importante processo de transformação educacional na região centro-sul de Sergipe. Antes de se consolidar como campus do IFS, a instituição passou por diferentes fases que marcaram sua identidade e ampliaram seu papel no desenvolvimento regional.</p>
+                            <p>Criada em 1995, a unidade surgiu como UNED-Lagarto (Unidade Descentralizada de Ensino), vinculada administrativamente à sede em Aracaju. Nesse período, a instituição tinha como principal objetivo a formação de mão de obra qualificada para os setores produtivos locais, ofertando exclusivamente cursos técnicos de nível médio, como Informática Industrial, Construção Civil e Eletromecânica.</p>
+                        </div>
+                        <div class="story-img-wrapper"
+                            onclick="openImage('images/foto_ifs/placeholder1.jpeg', 'IFS Antigo')">
+                            <img src="images/foto_ifs/placeholder1.jpeg" alt="Fachada Antiga IFS">
+                            <div class="img-credit">Clique para ver a foto</div>
+                        </div>
                     </div>
-                    <div class="info-grid">
-                        <div class="info-box">
-                            <h4>📚 Cursos Oferecidos</h4>
-                            <ul>
-                                <li>Técnico em Informática</li>
-                                <li>Técnico em Eletrotécnica</li>
-                                <li>Tecnologia em Gestão</li>
-                                <li>Análise de Sistemas</li>
-                            </ul>
+
+                    <div class="story-block reverse">
+                        <div class="story-text">
+                            <h4>Transformação em Instituto Federal (2008)</h4>
+                            <p>Entre 2004 e 2008, a unidade integrou o processo nacional de transformação das escolas técnicas em Centros Federais de Educação Tecnológica (CEFET). Essa mudança representou um passo importante, pois abriu caminho para a futura oferta de cursos superiores, ainda que essa possibilidade não tenha sido imediatamente implantada em Lagarto.</p>
+                            <p>A grande transformação ocorreu em 2008, com a criação dos Institutos Federais, quando a unidade passou a ser oficialmente o IFS – Campus Lagarto. A partir desse momento, o campus conquistou autonomia institucional e autorização legal para ofertar cursos superiores, ampliando significativamente sua atuação educacional.</p>
+                        </div>
+                        <div class="story-img-wrapper"
+                            onclick="openImage('images/foto_ifs/placeholder2.jpeg', 'Transformação IFS')">
+                             <img src="images/foto_ifs/placeholder2.jpeg" alt="IFS Transição">
+                            <div class="img-credit">Clique para ver a foto</div>
+                        </div>
+                    </div>
+
+                    <div class="story-block">
+                        <div class="story-text">
+                            <h4>Expansão e Verticalização do Ensino</h4>
+                            <p>Nos anos seguintes, o Campus Lagarto expandiu sua oferta acadêmica, passando a ofertar cursos de graduação, como Engenharia Elétrica, Sistemas de Informação, Licenciatura em Física e Tecnologia em Automação Industrial.</p>
+                            <p>A consolidação do campus permitiu a verticalização do ensino, integrando formação técnica e superior, além do fortalecimento de ações de pesquisa e extensão. O IFS Campus Lagarto passou a desempenhar um papel central no desenvolvimento educacional, social e econômico da região, ampliando o acesso ao ensino superior público e de qualidade.</p>
+                        </div>
+                        <div class="story-img-wrapper"
+                            onclick="openImage('images/foto_ifs/placeholder3.jpeg', 'IFS Atual')">
+                             <img src="images/foto_ifs/placeholder3.jpeg" alt="IFS Atualmente">
+                            <div class="img-credit">Clique para ver a foto</div>
                         </div>
                     </div>
                 </div>
+
+                <h2 style="margin-top: 4rem; text-align: center; color: white; text-shadow: 2px 2px 4px black;">📚
+                    Cursos de Graduação</h2>
+
+                <div class="institution-card ifs" style="margin-bottom: 2rem;">
+                    <h3>Excelência no Ensino Superior</h3>
+                    <p>Além dos tradicionais cursos técnicos, o IFS Campus Lagarto destaca-se pela oferta de cursos superiores de alta qualidade, focados em tecnologia, engenharia e docência, preparando profissionais para os desafios do mercado atual.</p>
+                </div>
+
+                <p style="text-align: center; color: white; margin-bottom: 2rem;">Clique nos cursos abaixo para ver mais
+                    detalhes e fotos:</p>
+
+                <div class="course-grid">
+                    <div class="course-card" onclick="openModal('sistemas')">
+                        <div class="course-content">
+                            <h4>Sistemas de Informação</h4>
+                            <p>Tecnologia e desenvolvimento de software.</p>
+                        </div>
+                    </div>
+                    <div class="course-card" onclick="openModal('fisica')">
+                        <div class="course-content">
+                            <h4>Licenciatura em Física</h4>
+                            <p>Formação de docentes e pesquisa científica.</p>
+                        </div>
+                    </div>
+                    <div class="course-card" onclick="openModal('arquitetura')">
+                        <div class="course-content">
+                            <h4>Arquitetura e Urbanismo</h4>
+                            <p>Planejamento, projeto e sustentabilidade.</p>
+                        </div>
+                    </div>
+                    <div class="course-card" onclick="openModal('engenharia')">
+                        <div class="course-content">
+                            <h4>Engenharia Elétrica</h4>
+                            <p>Sistemas de energia, automação e eletrônica.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="institution-card ifs" style="margin-top: 5rem; margin-bottom: 2rem;">
+                    <h3>Estrutura e Cotidiano Estudantil</h3>
+                    <p>A vida universitária no Campus de Lagarto vai além da sala de aula. A infraestrutura é pensada
+                        para garantir a permanência e o bem-estar dos estudantes:</p>
+
+                    <div class="info-grid" style="margin-top: 2rem;">
+                        <div class="info-box" style="border-left-color: var(--verde-ifs);">
+                            <h4 style="color: var(--verde-ifs);">🍽️ Alimentação</h4>
+                            <ul>
+                                <li>Refeitório / Cantina</li>
+                                <li>Espaço amplo para refeições</li>
+                                <li>Área de convivência</li>
+                            </ul>
+                        </div>
+                        <div class="info-box" style="border-left-color: var(--verde-ifs);">
+                            <h4 style="color: var(--verde-ifs);">📚 Estudos</h4>
+                            <ul>
+                                <li>Biblioteca com acervo técnico e acadêmico</li>
+                                <li>Laboratórios de informática equipados</li>
+                                <li>Salas de estudo em grupo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 2rem;">Os estudantes do campus formam uma comunidade diversa, vindos de
+                        Lagarto e municípios vizinhos. O transporte intermunicipal facilita o acesso diário, e muitos
+                        utilizam o transporte local para chegar ao campus.</p>
+                </div>
+
+
+                <div class="campus-tour-section" style="margin-top: 0; border-top: none;">
+                    <h2
+                        style="text-align: center; color: white; text-shadow: 2px 2px 4px black; border: none; margin-bottom: 3rem;">
+                        ✨ Um Giro pelo Campus: Galeria</h2>
+
+                    <div class="campus-tour-grid">
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/placeholder_geral.jpeg', 'Campus IFS Vista Geral')">
+                            <img src="images/foto_ifs/placeholder_geral.jpeg" alt="IFS Geral">
+                            <div class="tour-overlay">
+                                <span>Campus IFS Vista Geral</span>
+                                <small>Foto: Acervo IFS</small>
+                            </div>
+                        </div>
+                        <div class="tour-item" onclick="openImage('images/foto_ifs/placeholder_lab.jpeg', 'Laboratórios')">
+                            <img src="images/foto_ifs/placeholder_lab.jpeg" alt="Laboratório IFS">
+                            <div class="tour-overlay">
+                                <span>Laboratórios de Informática</span>
+                                <small>Foto: Acervo IFS</small>
+                            </div>
+                        </div>
+                        <div class="tour-item" onclick="openImage('images/foto_ifs/placeholder_eng.jpeg', 'Laboratório Engenharia')">
+                            <img src="images/foto_ifs/placeholder_eng.jpeg" alt="Lab Engenharia">
+                            <div class="tour-overlay">
+                                <span>Laboratórios de Engenharia</span>
+                                <small>Foto: Acervo IFS</small>
+                            </div>
+                        </div>
+                         <div class="tour-item" onclick="openImage('images/foto_ifs/placeholder_bib.jpeg', 'Biblioteca')">
+                            <img src="images/foto_ifs/placeholder_bib.jpeg" alt="Biblioteca IFS">
+                            <div class="tour-overlay">
+                                <span>Biblioteca</span>
+                                <small>Foto: Acervo IFS</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 4rem; text-align: center; color: white; text-shadow: 2px 2px 4px black;">📍 Como
+                    Chegar</h2>
+                <div class="routes-container">
+                    <div class="route-card">
+                        <h4 style="color: var(--verde-ifs);">🚌 Transporte e Acesso</h4>
+                        <p>O IFS Campus Lagarto está localizado na Rodovia Lourival Batista (SE-270).</p>
+                        <div class="info-box" style="margin-top: 1rem; border-left-color: var(--verde-ifs);">
+                            <p><strong>Intermunicipal:</strong> Coopertalse conecta Lagarto a outras cidades.</p>
+                            <p><strong>Local:</strong> Transporte urbano atende a região do campus.</p>
+                        </div>
+                        <h5 style="margin-top: 1.5rem; color: var(--verde-ifs);">📸 Fotos do Transporte</h5>
+                        <div class="route-photos">
+                            <div
+                                style="background: #eee; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 2px dashed #ccc;">
+                                Foto Ponto</div>
+                            <div
+                                style="background: #eee; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 2px dashed #ccc;">
+                                Foto Ônibus</div>
+                        </div>
+                    </div>
+                    <div class="route-card" style="padding: 0; overflow: hidden;">
+                        <iframe class="map-frame"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.385750882873!2d-37.6621396851963!3d-10.916111092224525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71018e612503957%3A0xc66519102434033e!2sInstituto%20Federal%20de%20Sergipe%20-%20Campus%20Lagarto!5e0!3m2!1spt-BR!2sbr!4v1645000000000!5m2!1spt-BR!2sbr"
+                            allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <p
+                    style="margin-top: 3rem; text-align: center; font-size: 0.9rem; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+                    📸 Fotos: Acervo do Projeto | 2026 | Campus IFS Lagarto
+                </p>
             </div>
         </div>
 
@@ -1532,10 +1760,11 @@
     <script>
         // DADOS DOS CURSOS
         const coursesData = {
+            // --- CURSOS UFS ---
             'medicina': { title: "Medicina", desc: "O curso de Medicina da UFS Lagarto adota a metodologia de Aprendizagem Baseada em Problemas (ABP). O aluno é inserido na prática desde o primeiro ciclo, com foco na humanização e na realidade do SUS.", area: "Hospitais, UBS, Clínicas, Pesquisa e Gestão em Saúde.", gallery: [] },
             'odontologia': { title: "Odontologia", desc: "Forma cirurgiões-dentistas capacitados para atuar na promoção, prevenção e recuperação da saúde bucal. Conta com uma Clínica Escola equipada que atende a comunidade.", area: "Consultórios, CEO, Hospitais e Saúde Pública.", gallery: [] },
             'enfermagem': {
-                title: "Enfermagem",
+                title: "Enfermagem (UFS)",
                 desc: "Prepara profissionais para o cuidado e gestão em saúde em todas as fases da vida. O curso tem forte integração com a rede de saúde de Lagarto e região, atuando desde a atenção básica até a alta complexidade.",
                 area: "Hospitais, Postos de Saúde da Família (PSF), Gestão em Saúde e Docência.",
                 gallery: ["images/foto_ufs/enfermagem2.jpeg", "images/foto_ufs/enfermagem3.jpeg", "images/foto_ufs/enfermagem4.jpeg"]
@@ -1544,7 +1773,33 @@
             'nutricao': { title: "Nutrição", desc: "Foco em segurança alimentar, nutrição clínica e saúde coletiva. Atua na prevenção de doenças e promoção da saúde através da alimentação.", area: "Hospitais, Restaurantes, Saúde Pública e Consultórios.", gallery: [] },
             'farmacia': { title: "Farmácia", desc: "Formação em análises clínicas, produção de medicamentos e assistência farmacêutica no SUS. O profissional atua em diversas frentes da saúde.", area: "Farmácias, Laboratórios de Análises, Indústria e Hospitais.", gallery: [] },
             'fonoaudiologia': { title: "Fonoaudiologia", desc: "Estudo da comunicação humana, voz e audição. O curso possui forte inserção social através de projetos de extensão.", area: "Clínicas, Escolas, Hospitais e TV/Rádio.", gallery: [] },
-            'terapia_ocupacional': { title: "Terapia Ocupacional", desc: "Reabilitação e reintegração social através das atividades humanas e do cotidiano. Foco na autonomia do paciente.", area: "Centros de Reabilitação, Saúde Mental e Hospitais.", gallery: [] }
+            'terapia_ocupacional': { title: "Terapia Ocupacional", desc: "Reabilitação e reintegração social através das atividades humanas e do cotidiano. Foco na autonomia do paciente.", area: "Centros de Reabilitação, Saúde Mental e Hospitais.", gallery: [] },
+
+            // --- CURSOS IFS ---
+            'sistemas': {
+                title: "Sistemas de Informação",
+                desc: "O curso de Bacharelado em Sistemas de Informação do IFS forma profissionais capazes de desenvolver soluções tecnológicas complexas, gerenciar projetos de TI e atuar na transformação digital de empresas. Foca tanto em programação quanto em gestão.",
+                area: "Desenvolvimento de Software, Gestão de TI, Análise de Dados, Startups e Inovação.",
+                gallery: [] // Adicione fotos depois
+            },
+            'fisica': {
+                title: "Licenciatura em Física",
+                desc: "Curso voltado para a formação de professores de Física e pesquisadores. O aluno tem contato com laboratórios didáticos e projetos de iniciação à docência (PIBID), preparando-se para o ensino básico e superior.",
+                area: "Ensino (Escolas e Universidades), Pesquisa Científica, Divulgação Científica.",
+                gallery: [] // Adicione fotos depois
+            },
+            'arquitetura': {
+                title: "Arquitetura e Urbanismo",
+                desc: "Forma arquitetos preparados para projetar espaços funcionais e esteticamente agradáveis, com foco em sustentabilidade e planejamento urbano. O curso integra teoria e prática em ateliês de projeto.",
+                area: "Projetos Arquitetônicos, Urbanismo, Paisagismo, Restauro e Interiores.",
+                gallery: [] // Adicione fotos depois
+            },
+            'engenharia': {
+                title: "Engenharia Elétrica",
+                desc: "O curso prepara engenheiros para lidar com geração, transmissão e distribuição de energia, além de eletrônica e automação industrial. Possui laboratórios modernos para práticas experimentais.",
+                area: "Setor Elétrico, Automação Industrial, Telecomunicações e Energias Renováveis.",
+                gallery: [] // Adicione fotos depois
+            }
         };
 
         function openModal(key) {
@@ -1553,7 +1808,7 @@
             document.getElementById('modalTitle').innerText = data.title;
             document.getElementById('modalDesc').innerText = data.desc;
             document.getElementById('modalArea').innerText = data.area;
-            document.getElementById('modalHeader').style.backgroundImage = `url('${data.image}')`;
+            document.getElementById('modalHeader').style.backgroundImage = `url('${data.image || ''}')`; // Fallback vazio se n tiver imagem
 
             const galleryDiv = document.getElementById('modalGallery');
             galleryDiv.innerHTML = '';
@@ -1566,16 +1821,18 @@
 
                     const img = document.createElement('img');
                     img.src = src;
-                    img.onclick = function () { openImage(src, 'Foto: Elisa Gabriela Pereira Nascimento | 2026'); }; // Descrição padrão para fotos do curso
+                    img.onclick = function () { openImage(src, 'Foto: Acervo do Curso'); }; 
 
                     const caption = document.createElement('div');
                     caption.className = 'modal-caption';
-                    caption.innerText = 'Foto: Elisa Gabriela Pereira Nascimento | 2026';
+                    caption.innerText = 'Foto: Acervo do Curso';
 
                     item.appendChild(img);
                     item.appendChild(caption);
                     galleryDiv.appendChild(item);
                 });
+            } else {
+                 galleryDiv.innerHTML = '<p style="text-align:center; color:#666; width:100%;">Galeria em breve...</p>';
             }
             document.getElementById('courseModal').style.display = "block";
         }
@@ -1585,7 +1842,7 @@
 
         function openImage(src, description) {
             document.getElementById('fullImage').src = src;
-            document.getElementById('imageModalCaption').innerText = description ? description : 'Foto: Elisa Gabriela Pereira Nascimento | 2026';
+            document.getElementById('imageModalCaption').innerText = description ? description : 'Foto: Acervo';
             document.getElementById('imageModal').style.display = 'flex';
         }
         function closeImageModal() {
@@ -1601,16 +1858,17 @@
             const navLink = document.querySelector(`a[href="#${pageId}"]`);
             if (navLink) navLink.classList.add('active');
 
+            // Remove classes antigas
+            document.body.classList.remove('home-active', 'ufs-active', 'ifs-active');
+
             if (pageId === 'ufs') {
                 document.body.classList.add('ufs-active');
-                document.body.classList.remove('home-active');
             } else if (pageId === 'home') {
                 document.body.classList.add('home-active');
-                document.body.classList.remove('ufs-active');
-            } else {
-                document.body.classList.remove('ufs-active');
-                document.body.classList.remove('home-active');
+            } else if (pageId === 'ifs') {
+                document.body.classList.add('ifs-active');
             }
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
