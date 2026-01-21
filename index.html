@@ -33,7 +33,7 @@
 
         /* --- CONFIGURAÇÕES DE FUNDO --- */
 
-        /* Fundo Home - Imagem da Praça com Overlay Escuro Gradiente */
+        /* Fundo Home */
         body.home-active {
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%),
                 url('images/foto_praca.jpg');
@@ -53,18 +53,17 @@
             color: white;
         }
 
-        /* Fundo IFS (Adicionado para manter padrão quando estiver na aba IFS) */
+        /* Fundo IFS */
         body.ifs-active {
             background: linear-gradient(rgba(20, 82, 42, 0.9), rgba(10, 50, 20, 0.95)),
-                url('images/foto_ifs/entrada_ifs.jpg'); /* Sugestão de nome */
+                url('images/foto_ifs/Mateus e luiz.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
         }
 
-
-        /* --- HEADER & NAV TRANSPARENTES NA HOME/UFS/IFS --- */
+        /* --- HEADER & NAV --- */
         body.home-active header,
         body.ufs-active header,
         body.ifs-active header {
@@ -92,9 +91,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* --- ESTILOS EXCLUSIVOS DA NOVA HOME (TEXTO FOCADO) --- */
-
-        /* Hero Section */
+        /* --- ESTILOS HOME --- */
         .hero-home {
             text-align: center;
             padding: 5rem 1rem 7rem 1rem;
@@ -136,7 +133,6 @@
             font-weight: 300;
         }
 
-        /* Botões da Home */
         .hero-actions {
             display: flex;
             justify-content: center;
@@ -176,13 +172,11 @@
             filter: brightness(1.1);
         }
 
-        /* Cards de Características (Features) */
         .features-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: -3rem;
-            /* Sobrepõe levemente o hero */
             position: relative;
             z-index: 2;
             margin-bottom: 4rem;
@@ -231,7 +225,6 @@
             line-height: 1.6;
         }
 
-        /* Seção "Sobre a Cidade" - Agora focada em texto */
         .city-section {
             background: var(--branco-vidro);
             backdrop-filter: blur(10px);
@@ -240,7 +233,6 @@
             color: #333;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
             text-align: center;
-            /* Centraliza o texto */
             max-width: 900px;
             margin: 0 auto 3rem auto;
         }
@@ -261,9 +253,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* --- FIM DOS ESTILOS EXCLUSIVOS HOME --- */
-
-        /* HEADER & NAV GERAL */
+        /* --- ESTILOS GERAIS --- */
         header {
             background: linear-gradient(135deg, var(--verde-ifs) 0%, var(--azul-ufs) 100%);
             color: white;
@@ -370,7 +360,6 @@
             }
         }
 
-        /* ESTILOS GERAIS PARA AS OUTRAS ABAS (MANTIDOS) */
         h2 {
             font-size: 2.5rem;
             color: var(--cinza-escuro);
@@ -379,8 +368,8 @@
             border-bottom: 4px solid var(--dourado);
         }
 
-        /* Estilo para titulos UFS e IFS quando background ativo */
-        body.ufs-active h2, body.ifs-active h2 {
+        body.ufs-active h2,
+        body.ifs-active h2 {
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
@@ -401,7 +390,6 @@
             margin-bottom: 3rem;
         }
 
-        /* Efeito de vidro para UFS e IFS */
         body.ufs-active .intro-section,
         body.ufs-active .institution-card,
         body.ufs-active .info-box,
@@ -493,22 +481,22 @@
             cursor: pointer;
             position: relative;
         }
-        
-        /* Borda especifica para cada instituicao nos cards de curso */
+
         .page#ufs .course-card {
-             border-top: 4px solid var(--azul-ufs);
+            border-top: 4px solid var(--azul-ufs);
         }
+
         .page#ifs .course-card {
-             border-top: 4px solid var(--verde-ifs);
+            border-top: 4px solid var(--verde-ifs);
         }
 
         .course-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
-        
+
         .page#ifs .course-card:hover {
-             box-shadow: 0 10px 25px rgba(30, 123, 63, 0.3);
+            box-shadow: 0 10px 25px rgba(30, 123, 63, 0.3);
         }
 
         .course-card img {
@@ -525,6 +513,7 @@
         .page#ufs .course-card h4 {
             color: var(--azul-ufs) !important;
         }
+
         .page#ifs .course-card h4 {
             color: var(--verde-ifs) !important;
         }
@@ -610,9 +599,6 @@
             height: 100%;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
         }
-        
-        /* Ajuste do gradiente do modal dependendo da instituicao ativa (via JS ou CSS generico) */
-        /* Aqui deixamos generico preto/transparente que funciona pra ambos */
 
         .modal-title {
             position: relative;
@@ -627,16 +613,20 @@
         }
 
         .modal-info h3 {
-            color: #333; /* Default fallback */
+            color: #333;
             margin-bottom: 1rem;
             border-bottom: 2px solid var(--dourado);
             display: inline-block;
             font-size: 1.5rem;
         }
-        
-        body.ufs-active .modal-info h3 { color: var(--azul-ufs); }
-        body.ifs-active .modal-info h3 { color: var(--verde-ifs); }
 
+        body.ufs-active .modal-info h3 {
+            color: var(--azul-ufs);
+        }
+
+        body.ifs-active .modal-info h3 {
+            color: var(--verde-ifs);
+        }
 
         .modal-info p {
             color: #444;
@@ -659,10 +649,14 @@
             font-weight: bold;
             text-align: center;
         }
-        
-        body.ufs-active .modal-gallery-title { color: var(--azul-ufs); }
-        body.ifs-active .modal-gallery-title { color: var(--verde-ifs); }
 
+        body.ufs-active .modal-gallery-title {
+            color: var(--azul-ufs);
+        }
+
+        body.ifs-active .modal-gallery-title {
+            color: var(--verde-ifs);
+        }
 
         .modal-gallery {
             display: grid;
@@ -739,9 +733,10 @@
             border-radius: 50px;
         }
 
+        /* --- MUDANÇA IMPORTANTE: Layout Empilhado (1 coluna) para a parte de Rotas --- */
         .routes-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr; /* UMA SÓ COLUNA */
             gap: 2rem;
         }
 
@@ -751,17 +746,23 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
-        .page#ufs .route-card h4 { color: var(--azul-ufs); }
-        .page#ifs .route-card h4 { color: var(--verde-ifs); }
+
+        .page#ufs .route-card h4 {
+            color: var(--azul-ufs);
+        }
+
+        .page#ifs .route-card h4 {
+            color: var(--verde-ifs);
+        }
 
         .map-frame {
             width: 100%;
-            height: 350px;
+            height: 400px; /* Altura do mapa */
             border: 0;
             border-radius: 10px;
             border: 4px solid white;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: block; 
         }
 
         .route-photos {
@@ -885,10 +886,14 @@
             border-left: 4px solid var(--dourado);
             padding-left: 1rem;
         }
-        
-        .page#ufs .story-text h4 { color: var(--azul-ufs); }
-        .page#ifs .story-text h4 { color: var(--verde-ifs); }
 
+        .page#ufs .story-text h4 {
+            color: var(--azul-ufs);
+        }
+
+        .page#ifs .story-text h4 {
+            color: var(--verde-ifs);
+        }
 
         .story-text p {
             font-size: 1.1rem;
@@ -1035,7 +1040,8 @@
                 font-size: 1.8rem;
             }
 
-            body.ufs-active, body.ifs-active {
+            body.ufs-active,
+            body.ifs-active {
                 background-attachment: scroll;
             }
 
@@ -1159,7 +1165,7 @@
                         </div>
                         <div class="story-img-wrapper"
                             onclick="openImage('images/foto_ifs/placeholder1.jpeg', 'IFS Antigo')">
-                            <img src="images/foto_ifs/placeholder1.jpeg" alt="Fachada Antiga IFS">
+                            <img src="images/foto_ifs/Fachada Antiga IFS.jpeg" alt="Fachada Antiga IFS">
                             <div class="img-credit">Clique para ver a foto</div>
                         </div>
                     </div>
@@ -1172,7 +1178,7 @@
                         </div>
                         <div class="story-img-wrapper"
                             onclick="openImage('images/foto_ifs/placeholder2.jpeg', 'Transformação IFS')">
-                             <img src="images/foto_ifs/placeholder2.jpeg" alt="IFS Transição">
+                            <img src="images/foto_ifs/placeholder2.jpeg" alt="IFS Transição">
                             <div class="img-credit">Clique para ver a foto</div>
                         </div>
                     </div>
@@ -1184,8 +1190,8 @@
                             <p>A consolidação do campus permitiu a verticalização do ensino, integrando formação técnica e superior, além do fortalecimento de ações de pesquisa e extensão. O IFS Campus Lagarto passou a desempenhar um papel central no desenvolvimento educacional, social e econômico da região, ampliando o acesso ao ensino superior público e de qualidade.</p>
                         </div>
                         <div class="story-img-wrapper"
-                            onclick="openImage('images/foto_ifs/placeholder3.jpeg', 'IFS Atual')">
-                             <img src="images/foto_ifs/placeholder3.jpeg" alt="IFS Atualmente">
+                            onclick="openImage('images/foto_ifs/Mateus e luiz.jpeg', 'IFS Atual')">
+                            <img src="images/foto_ifs/Mateus e luiz.jpeg" alt="IFS Atualmente">
                             <div class="img-credit">Clique para ver a foto</div>
                         </div>
                     </div>
@@ -1231,7 +1237,7 @@
 
                 <div class="institution-card ifs" style="margin-top: 5rem; margin-bottom: 2rem;">
                     <h3>Estrutura e Cotidiano Estudantil</h3>
-                    <p>A vida universitária no Campus de Lagarto vai além da sala de aula. A infraestrutura é pensada
+                    <p>A vida no Campus de Lagarto vai além da sala de aula. A infraestrutura é pensada
                         para garantir a permanência e o bem-estar dos estudantes:</p>
 
                     <div class="info-grid" style="margin-top: 2rem;">
@@ -1248,7 +1254,7 @@
                             <ul>
                                 <li>Biblioteca com acervo técnico e acadêmico</li>
                                 <li>Laboratórios de informática equipados</li>
-                                <li>Salas de estudo em grupo</li>
+                                <li>Sala de estudo</li>
                             </ul>
                         </div>
                     </div>
@@ -1265,35 +1271,117 @@
                         ✨ Um Giro pelo Campus: Galeria</h2>
 
                     <div class="campus-tour-grid">
+
                         <div class="tour-item"
-                            onclick="openImage('images/foto_ifs/placeholder_geral.jpeg', 'Campus IFS Vista Geral')">
-                            <img src="images/foto_ifs/placeholder_geral.jpeg" alt="IFS Geral">
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/ifs_lateral.jpg', 'Lateral do IFS (Foto: MONIQUE ANDRADE DE SANTANA | 2025)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/ifs_lateral.jpg"
+                                alt="Lateral do IFS">
                             <div class="tour-overlay">
-                                <span>Campus IFS Vista Geral</span>
-                                <small>Foto: Acervo IFS</small>
+                                <span>Lateral do IFS</span>
+                                <small>Foto: MONIQUE ANDRADE DE SANTANA | 2025</small>
                             </div>
                         </div>
-                        <div class="tour-item" onclick="openImage('images/foto_ifs/placeholder_lab.jpeg', 'Laboratórios')">
-                            <img src="images/foto_ifs/placeholder_lab.jpeg" alt="Laboratório IFS">
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Laboratorio 1.jpeg', 'Laboratorio COINF Sala 2 (Foto: Victor Silva do Valle | 2026)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Laboratorio 1.jpeg"
+                                alt="Laboratorio 1">
                             <div class="tour-overlay">
-                                <span>Laboratórios de Informática</span>
-                                <small>Foto: Acervo IFS</small>
+                                <span>Laboratorio COINF Sala 2</span>
+                                <small>Foto: Victor Silva do Valle | 2026</small>
                             </div>
                         </div>
-                        <div class="tour-item" onclick="openImage('images/foto_ifs/placeholder_eng.jpeg', 'Laboratório Engenharia')">
-                            <img src="images/foto_ifs/placeholder_eng.jpeg" alt="Lab Engenharia">
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Laboratoriop Redes.jpeg', 'Laboratorio de Redes (Foto: Victor Silva do Valle | 2026)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Laboratoriop Redes.jpeg"
+                                alt="Lab Redes">
                             <div class="tour-overlay">
-                                <span>Laboratórios de Engenharia</span>
-                                <small>Foto: Acervo IFS</small>
+                                <span>Laboratorio de Redes</span>
+                                <small>Foto: Victor Silva do Valle | 2026</small>
                             </div>
                         </div>
-                         <div class="tour-item" onclick="openImage('images/foto_ifs/placeholder_bib.jpeg', 'Biblioteca')">
-                            <img src="images/foto_ifs/placeholder_bib.jpeg" alt="Biblioteca IFS">
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/refeitorio Superior.jpeg', 'Refeitorio Parte Superior (Foto: Victor Silva do Valle | 2026)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/refeitorio Superior.jpeg"
+                                alt="Refeitorio">
                             <div class="tour-overlay">
-                                <span>Biblioteca</span>
-                                <small>Foto: Acervo IFS</small>
+                                <span>Refeitorio Parte Superior</span>
+                                <small>Foto: Victor Silva do Valle | 2026</small>
                             </div>
                         </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Indopraaula.jpeg', 'IFS Entrada Logo Depois de Sair do Onibus (Foto: JOSÉ ALEXANDRE BARBOSA SANTOS SILVA | 2025)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Indopraaula.jpeg"
+                                alt="Indo pra aula">
+                            <div class="tour-overlay">
+                                <span>Entrada / Ponto de Ônibus</span>
+                                <small>Foto: JOSÉ ALEXANDRE | 2025</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/aulalogica.jpeg', 'Aula de Logica Matematica (Foto: LUCAS EMANUEL DIAS DOS SANTOS OLIVEIRA | 2025)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/aulalogica.jpeg"
+                                alt="Aula Logica">
+                            <div class="tour-overlay">
+                                <span>Aula de Lógica Matemática</span>
+                                <small>Foto: LUCAS EMANUEL | 2025</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/aularedes.jpeg', 'Aula de Redes (Foto: Victor Silva do Valle | 2025)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/aularedes.jpeg"
+                                alt="Aula Redes">
+                            <div class="tour-overlay">
+                                <span>Aula de Redes</span>
+                                <small>Foto: Victor Silva do Valle | 2025</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/estudando.jpeg', 'Estudantes Estudando (Foto: LUCAS EMANUEL DIAS DOS SANTOS OLIVEIRA | 2025)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/estudando.jpeg"
+                                alt="Estudando">
+                            <div class="tour-overlay">
+                                <span>Estudantes Estudando</span>
+                                <small>Foto: LUCAS EMANUEL | 2025</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Evento Game Cover (Hallowen).jpeg', 'Evento de Hallowen (Foto: LUCAS EMANUEL DIAS DOS SANTOS OLIVEIRA | 2025)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Evento Game Cover (Hallowen).jpeg"
+                                alt="Halloween">
+                            <div class="tour-overlay">
+                                <span>Evento de Halloween</span>
+                                <small>Foto: LUCAS EMANUEL | 2025</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Evento Make-A-Thon.jpeg', 'Evento Make-A-Thon (Foto: Victor Silva do Valle | 2024)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/Evento Make-A-Thon.jpeg"
+                                alt="Make-A-Thon">
+                            <div class="tour-overlay">
+                                <span>Evento Make-A-Thon 1</span>
+                                <small>Foto: Victor Silva do Valle | 2024</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/EventoIFS Make-A-Thon.jpeg', 'Evento Make-A-Thon (Foto: Victor Silva do Valle | 2024)')">
+                            <img src="images/foto_ifs/Fotos Victor (Vou usar essas por enquanto)/EventoIFS Make-A-Thon.jpeg"
+                                alt="Make-A-Thon 2">
+                            <div class="tour-overlay">
+                                <span>Evento Make-A-Thon 2</span>
+                                <small>Foto: Victor Silva do Valle | 2024</small>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -1307,6 +1395,15 @@
                             <p><strong>Intermunicipal:</strong> Coopertalse conecta Lagarto a outras cidades.</p>
                             <p><strong>Local:</strong> Transporte urbano atende a região do campus.</p>
                         </div>
+
+                        <h5 style="margin-top: 1.5rem; color: var(--verde-ifs);">🚍 Roteiro de 2026</h5>
+                        <div style="margin-top: 1rem; border: 2px solid var(--verde-ifs); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;"
+                             onclick="openImage('images/Roteiro dos Onibus.jpeg', 'Roteiro de Ônibus 2026')">
+                            <img src="images/Roteiro dos Onibus.jpeg" alt="Roteiro dos Ônibus 2026"
+                                 style="width: 100%; display: block; transition: transform 0.3s;">
+                        </div>
+                        <p style="text-align: center; font-size: 0.8rem; margin-top: 5px; color: #666;">Clique para ampliar</p>
+
                         <h5 style="margin-top: 1.5rem; color: var(--verde-ifs);">📸 Fotos do Transporte</h5>
                         <div class="route-photos">
                             <div
@@ -1318,9 +1415,8 @@
                         </div>
                     </div>
                     <div class="route-card" style="padding: 0; overflow: hidden;">
-                        <iframe class="map-frame"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.385750882873!2d-37.6621396851963!3d-10.916111092224525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71018e612503957%3A0xc66519102434033e!2sInstituto%20Federal%20de%20Sergipe%20-%20Campus%20Lagarto!5e0!3m2!1spt-BR!2sbr!4v1645000000000!5m2!1spt-BR!2sbr"
-                            allowfullscreen="" loading="lazy"></iframe>
+                        <iframe class="map-frame" src="https://maps.google.com/maps?q=Estr.+da+Barragem,+286&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen=""
+                            loading="lazy"></iframe>
                     </div>
                 </div>
 
@@ -1623,6 +1719,7 @@
 
                 <h2 style="margin-top: 4rem; text-align: center; color: white; text-shadow: 2px 2px 4px black;">📍 Como
                     Chegar</h2>
+                
                 <div class="routes-container">
                     <div class="route-card">
                         <h4>🚌 Transporte e Acesso</h4>
@@ -1631,6 +1728,15 @@
                             <p><strong>Intermunicipal:</strong> Coopertalse conecta Lagarto a outras cidades.</p>
                             <p><strong>Local:</strong> "Ligeirinhos" fazem Terminal ↔ Campus.</p>
                         </div>
+
+                        <h5 style="margin-top: 1.5rem; color: var(--azul-ufs);">🚍 Roteiro de 2026</h5>
+                        <div style="margin-top: 1rem; border: 2px solid var(--azul-ufs); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;"
+                             onclick="openImage('images/Roteiro dos Onibus.jpeg', 'Roteiro de Ônibus 2026')">
+                            <img src="images/Roteiro dos Onibus.jpeg" alt="Roteiro dos Ônibus 2026"
+                                 style="width: 100%; display: block; transition: transform 0.3s;">
+                        </div>
+                        <p style="text-align: center; font-size: 0.8rem; margin-top: 5px; color: #666;">Clique para ampliar</p>
+
                         <h5 style="margin-top: 1.5rem; color: var(--azul-ufs);">📸 Fotos do Transporte</h5>
                         <div class="route-photos">
                             <div
@@ -1642,9 +1748,8 @@
                         </div>
                     </div>
                     <div class="route-card" style="padding: 0; overflow: hidden;">
-                        <iframe class="map-frame"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.416568894273!2d-37.6630006!3d-10.9238889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x710185906f33333%3A0xc39726330366606!2sUFS%20-%20Campus%20de%20Lagarto!5e0!3m2!1spt-BR!2sbr!4v1705600000000!5m2!1spt-BR!2sbr"
-                            allowfullscreen="" loading="lazy"></iframe>
+                        <iframe class="map-frame" src="https://maps.google.com/maps?q=Universidade+Federal+de+Sergipe+-+Campus+Lagarto&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen=""
+                            loading="lazy"></iframe>
                     </div>
                 </div>
 
@@ -1821,7 +1926,7 @@
 
                     const img = document.createElement('img');
                     img.src = src;
-                    img.onclick = function () { openImage(src, 'Foto: Acervo do Curso'); }; 
+                    img.onclick = function () { openImage(src, 'Foto: Acervo do Curso'); };
 
                     const caption = document.createElement('div');
                     caption.className = 'modal-caption';
@@ -1832,7 +1937,7 @@
                     galleryDiv.appendChild(item);
                 });
             } else {
-                 galleryDiv.innerHTML = '<p style="text-align:center; color:#666; width:100%;">Galeria em breve...</p>';
+                galleryDiv.innerHTML = '<p style="text-align:center; color:#666; width:100%;">Galeria em breve...</p>';
             }
             document.getElementById('courseModal').style.display = "block";
         }
@@ -1868,7 +1973,7 @@
             } else if (pageId === 'ifs') {
                 document.body.classList.add('ifs-active');
             }
-            
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
