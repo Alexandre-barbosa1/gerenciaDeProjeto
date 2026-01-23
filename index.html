@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lagarto em movimento: cidade universitária - IFS & UFS</title>
+    <title>Lagarto em movimento: cidade universitária</title>
     <style>
         * {
             margin: 0;
@@ -68,7 +68,7 @@
         /* Fundo Faculdades privadas*/
         body.privadas-active {
             background: linear-gradient(rgba(255, 107, 53, 0.85), rgba(196, 75, 31, 0.95)),
-                url('images/foto_privadas/entrada.jpeg');
+                url('images/lagarto adventure/banner faculdade jardins all.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -79,7 +79,8 @@
         /* --- HEADER & NAV --- */
         body.home-active header,
         body.ufs-active header,
-        body.ifs-active header {
+        body.ifs-active header,
+        body.privadas-active header {
             background: transparent;
             box-shadow: none;
             padding-top: 3rem;
@@ -88,7 +89,8 @@
 
         body.home-active nav,
         body.ufs-active nav,
-        body.ifs-active nav {
+        body.ifs-active nav,
+        body.privadas-active nav {
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -98,7 +100,8 @@
 
         body.home-active footer,
         body.ufs-active footer,
-        body.ifs-active footer {
+        body.ifs-active footer,
+        body.privadas-active footer {
             background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(5px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -388,7 +391,8 @@
         }
 
         body.ufs-active h2,
-        body.ifs-active h2 {
+        body.ifs-active h2,
+        body.privadas-active h2 {
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
@@ -420,7 +424,13 @@
         body.ifs-active .info-box,
         body.ifs-active .course-card,
         body.ifs-active .route-card,
-        body.ifs-active .gallery-section {
+        body.ifs-active .gallery-section,
+        body.privadas-active .intro-section,
+        body.privadas-active .institution-card,
+        body.privadas-active .info-box,
+        body.privadas-active .course-card,
+        body.privadas-active .route-card,
+        body.privadas-active .gallery-section {
             background: var(--branco-vidro);
             backdrop-filter: blur(5px);
         }
@@ -436,7 +446,13 @@
         body.ifs-active .info-box h4,
         body.ifs-active .info-box li,
         body.ifs-active .course-card h4,
-        body.ifs-active .course-card p {
+        body.ifs-active .course-card p,
+        body.privadas-active .institution-card h3,
+        body.privadas-active .institution-card p,
+        body.privadas-active .info-box h4,
+        body.privadas-active .info-box li,
+        body.privadas-active .course-card h4,
+        body.privadas-active .course-card p {
             color: #333;
             text-shadow: none;
         }
@@ -449,12 +465,20 @@
             color: var(--azul-ufs) !important;
         }
 
+        .institution-card.privadas h3 {
+            color: var(--laranja-privadas-dark) !important;
+        }
+
         .institution-card.ifs {
             border-top: 6px solid var(--verde-ifs);
         }
 
         .institution-card.ufs {
             border-top: 6px solid var(--azul-ufs);
+        }
+
+        .institution-card.privadas {
+            border-top: 6px solid var(--laranja-privadas);
         }
 
         .info-grid {
@@ -915,6 +939,10 @@
             color: var(--verde-ifs);
         }
 
+        .page#privadas .story-text h4 {
+            color: var(--laranja-privadas-dark);
+        }
+
         .story-text p {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -1061,7 +1089,8 @@
             }
 
             body.ufs-active,
-            body.ifs-active {
+            body.ifs-active,
+            body.privadas-active {
                 background-attachment: scroll;
             }
 
@@ -1101,7 +1130,6 @@
             <li><a href="#home" class="nav-link active" onclick="showPage('home')">Início</a></li>
             <li><a href="#ifs" class="nav-link" onclick="showPage('ifs')">IFS - Instituto Federal</a></li>
             <li><a href="#ufs" class="nav-link" onclick="showPage('ufs')">UFS - Universidade Federal</a></li>
-            <li><a href="#galeria" class="nav-link" onclick="showPage('galeria')">Galeria</a></li>
             <li><a href="#sobre" class="nav-link" onclick="showPage('sobre')">Sobre o Projeto</a></li>
             <li><a href="#privadas" class="nav-link" onclick="showPage('privadas')">Faculdades Privadas</a></li>
         </ul>
@@ -1579,8 +1607,7 @@
                         </div>
                     </div>
                     <div class="route-card" style="padding: 0; overflow: hidden;">
-                        <iframe class="map-frame"
-                            src="https://maps.google.com/maps?q=Instituto+Federal+de+Sergipe+Campus+Lagarto&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        <iframe class="map-frame" src="https://maps.google.com/maps?q=Instituto+Federal+de+Sergipe+Campus+Lagarto&t=&z=16&ie=UTF8&iwloc=&output=embed"
                             allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
@@ -1613,8 +1640,7 @@
                                 universidades federais (REUNI), visando levar educação de qualidade para além das
                                 capitais.</p>
                         </div>
-                        <div class="story-img-wrapper"
-                            onclick="openImage('images/foto_ufs/entrada.jpeg', 'Entrada UFS')">
+                        <div class="story-img-wrapper" onclick="openImage('images/foto_ufs/entrada.jpeg', 'Entrada UFS')">
                             <img src="images/foto_ufs/entrada.jpeg" alt="Entrada UFS">
                             <div class="img-credit">Foto: Elisa Gabriela Pereira Nascimento | 2026</div>
                         </div>
@@ -1801,8 +1827,7 @@
 
                     <div class="campus-tour-grid">
 
-                        <div class="tour-item"
-                            onclick="openImage('images/foto_ufs/entrada.jpeg', 'Campus UFS Vista Geral')">
+                        <div class="tour-item" onclick="openImage('images/foto_ufs/entrada.jpeg', 'Campus UFS Vista Geral')">
                             <img src="images/foto_ufs/entrada.jpeg" alt="UFS Geral">
                             <div class="tour-overlay">
                                 <span>Campus UFS Vista Geral</span>
@@ -1892,21 +1917,21 @@
                                 <small>Foto: Eduarda Cesár</small>
                             </div>
                         </div>
-                         <div class="tour-item" onclick="openImage('images/foto_ufs/ufs_interno2.png')">
+                        <div class="tour-item" onclick="openImage('images/foto_ufs/ufs_interno2.png')">
                             <img src="images/foto_ufs/ufs_interno2.png" alt="parte interna">
                             <div class="tour-overlay">
                                 <span>parte interna</span>
                                 <small>Foto: Eduarda Cesár</small>
                             </div>
                         </div>
-                         <div class="tour-item" onclick="openImage('images/foto_ufs/ufs_sacada.png')">
+                        <div class="tour-item" onclick="openImage('images/foto_ufs/ufs_sacada.png')">
                             <img src="images/foto_ufs/ufs_sacada.png" alt="parte interna">
                             <div class="tour-overlay">
                                 <span>parte interna</span>
                                 <small>Foto: Eduarda Cesár</small>
                             </div>
                         </div>
-                         <div class="tour-item" onclick="openImage('images/foto_ufs/ufs_centrodepraticas.png')">
+                        <div class="tour-item" onclick="openImage('images/foto_ufs/ufs_centrodepraticas.png')">
                             <img src="images/foto_ufs/ufs_centrodepraticas.png" alt="ambulatório">
                             <div class="tour-overlay">
                                 <span>ambulatório</span>
@@ -1949,8 +1974,7 @@
                         </div>
                     </div>
                     <div class="route-card" style="padding: 0; overflow: hidden;">
-                        <iframe class="map-frame"
-                            src="https://maps.google.com/maps?q=Universidade+Federal+de+Sergipe+Campus+Lagarto&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        <iframe class="map-frame" src="https://maps.google.com/maps?q=Universidade+Federal+de+Sergipe+Campus+Lagarto&t=&z=16&ie=UTF8&iwloc=&output=embed"
                             allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
@@ -1967,35 +1991,119 @@
                 <div style="text-align: center; margin-bottom: 3rem;">
                     <h2 style="border: none; font-size: 3.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom: 0.5rem; color: white;">
                         🟠 Faculdades Privadas</h2>
-                    <p style="color: white; font-size: 1.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.8);">Ensino Superior Particular em Lagarto</p>
+                    <p style="color: white; font-size: 1.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.8);">Ensino Particular e Técnico em Lagarto</p>
                 </div>
                 
-                <!-- Adicione o conteúdo aqui, seguindo a estrutura das outras páginas -->
-            </div>
-        </div>
-        
-        <div id="galeria" class="page">
-            <div class="container">
-                <h2>📷 Galeria Fotográfica</h2>
-                <div class="intro-section">
-                    <p>Registro visual das instituições de ensino superior de Lagarto. Todas as fotos são autorais.</p>
-                </div>
-                <div class="galeria-grid">
+                <div class="institution-card privadas">
+                    <h3 style="text-align: center; margin-bottom: 3rem;">Expansão do Ensino e Oportunidades</h3>
 
-                    <div class="photo-item" onclick="openImage('images/foto_ufs/entrada.jpeg', 'Entrada UFS Lagarto')">
-                        <img src="images/foto_ufs/entrada.jpeg" alt="UFS">
-                        <div class="photo-caption">
-                            <div class="title">Entrada UFS Lagarto</div>
-                            <div class="credit">Foto: Elisa Gabriela Pereira Nascimento | 2026</div>
+                    <div class="story-block">
+                        <div class="story-text">
+                            <h4>Novos Polos Educacionais</h4>
+                            <p>Lagarto continua a crescer como cidade universitária com a chegada e expansão de faculdades privadas. Instituições como a Faculdade Jardins ampliam o acesso ao ensino superior, oferecendo novas opções de cursos e infraestrutura moderna para os estudantes da região centro-sul.</p>
+                        </div>
+                        <div class="story-img-wrapper"
+                            onclick="openImage('images/lagarto adventure/banner faculdade jardins all.jpeg', 'Faculdade Jardins')">
+                            <img src="images/lagarto adventure/banner faculdade jardins all.jpeg" alt="Faculdade Jardins">
+                            <div class="img-credit">Foto: Acervo do Projeto | 2026</div>
                         </div>
                     </div>
-                    <div class="photo-item"
-                        onclick="openImage('images/foto_ufs/centro de simulação de praticas.jpeg', 'Centro de Simulação')">
-                        <img src="images/foto_ufs/centro de simulação de praticas.jpeg" alt="UFS">
-                        <div class="photo-caption">
-                            <div class="title">Centro de Simulação</div>
-                            <div class="credit">Foto: Elisa Gabriela Pereira Nascimento | 2026</div>
+
+                    <div class="story-block reverse">
+                        <div class="story-text">
+                            <h4>Formação Técnica e Profissionalizante</h4>
+                            <p>Além das graduações, Lagarto conta com escolas de formação técnica de referência, como a Escola de Enfermagem Kuality Brasil. Estas instituições desempenham papel fundamental na qualificação rápida de mão de obra, especialmente para o setor de saúde, atendendo à demanda dos hospitais locais.</p>
                         </div>
+                        <div class="story-img-wrapper"
+                            onclick="openImage('images/lagarto adventure/kuality fachada.jpeg', 'Fachada Kuality')">
+                            <img src="images/lagarto adventure/kuality fachada.jpeg" alt="Kuality Brasil">
+                            <div class="img-credit">Foto: Acervo do Projeto | 2026</div>
+                        </div>
+                    </div>
+                    
+                     <div class="story-block">
+                        <div class="story-text">
+                            <h4>Espaços de Cultura e Educação</h4>
+                            <p>A cidade também preserva espaços históricos e culturais, como o antigo Dom Pedro, que fazem parte da memória educacional e social do município, servindo como ponto de referência para a comunidade.</p>
+                        </div>
+                        <div class="story-img-wrapper"
+                            onclick="openImage('images/lagarto adventure/antigo dom pedro.jpeg', 'Antigo Dom Pedro')">
+                            <img src="images/lagarto adventure/antigo dom pedro.jpeg" alt="Antigo Dom Pedro">
+                            <div class="img-credit">Foto: Acervo do Projeto | 2026</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="campus-tour-section" style="margin-top: 0; border-top: none;">
+                    <h2
+                        style="text-align: center; color: white; text-shadow: 2px 2px 4px black; border: none; margin-bottom: 3rem;">
+                        ✨ Galeria: Instituições Privadas</h2>
+
+                    <div class="campus-tour-grid">
+
+                        <div class="tour-item"
+                            onclick="openImage('images/lagarto adventure/banner faculdade jardins all.jpeg', 'Faculdade Jardins')">
+                            <img src="images/lagarto adventure/banner faculdade jardins all.jpeg" alt="Faculdade Jardins">
+                            <div class="tour-overlay">
+                                <span>Faculdade Jardins</span>
+                                <small>Foto: Acervo Projeto</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/lagarto adventure/kuality fachada.jpeg', 'Kuality Brasil - Fachada')">
+                            <img src="images/lagarto adventure/kuality fachada.jpeg" alt="Kuality Fachada">
+                            <div class="tour-overlay">
+                                <span>Kuality Brasil - Fachada</span>
+                                <small>Foto: Acervo Projeto</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/lagarto adventure/kuality interno .jpeg', 'Kuality - Recepção')">
+                            <img src="images/lagarto adventure/kuality interno .jpeg" alt="Kuality Interno">
+                            <div class="tour-overlay">
+                                <span>Kuality - Recepção</span>
+                                <small>Foto: Acervo Projeto</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/lagarto adventure/kuality interno2.jpeg', 'Kuality - Salas')">
+                            <img src="images/lagarto adventure/kuality interno2.jpeg" alt="Kuality Corredor">
+                            <div class="tour-overlay">
+                                <span>Kuality - Salas</span>
+                                <small>Foto: Acervo Projeto</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/lagarto adventure/kuality interno3.jpeg', 'Kuality - Ambiente')">
+                            <img src="images/lagarto adventure/kuality interno3.jpeg" alt="Kuality Interno">
+                            <div class="tour-overlay">
+                                <span>Kuality - Ambiente</span>
+                                <small>Foto: Acervo Projeto</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/lagarto adventure/kuality.jpeg', 'Kuality - Recepção Principal')">
+                            <img src="images/lagarto adventure/kuality.jpeg" alt="Kuality Recepção">
+                            <div class="tour-overlay">
+                                <span>Kuality - Recepção Principal</span>
+                                <small>Foto: Acervo Projeto</small>
+                            </div>
+                        </div>
+
+                        <div class="tour-item"
+                            onclick="openImage('images/lagarto adventure/antigo dom pedro.jpeg', 'Antigo Dom Pedro')">
+                            <img src="images/lagarto adventure/antigo dom pedro.jpeg" alt="Dom Pedro">
+                            <div class="tour-overlay">
+                                <span>Antigo Dom Pedro</span>
+                                <small>Foto: Acervo Projeto</small>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -2005,37 +2113,47 @@
             <div class="container">
                 <h2>ℹ️ Sobre o Projeto</h2>
                 <div class="about-section">
-                    <p>Projeto da disciplina de Gerência de Projetos do IFS - Campus Lagarto.</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem; text-align: justify;">
+                        Olá! Somos estudantes do curso de <strong>Bacharelado em Sistemas de Informação</strong> do <strong>Instituto Federal de Sergipe (IFS) - Campus Lagarto</strong>.
+                    </p>
+                    <p style="margin-bottom: 2rem; text-align: justify;">
+                        Este site foi desenvolvido como parte de um projeto acadêmico interdisciplinar. Nosso objetivo é apresentar Lagarto sob uma nova perspectiva: a de uma <strong>Cidade Universitária</strong> em pleno movimento. Buscamos centralizar informações visuais e práticas sobre as principais instituições de ensino superior presentes no município (IFS, UFS e Faculdades Privadas), destacando como a educação tem transformado a realidade social, econômica e cultural da região centro-sul de Sergipe.
+                    </p>
+                    <p style="margin-bottom: 2rem; text-align: justify;">
+                        Através de registros fotográficos autorais e informações organizadas, esperamos ajudar futuros estudantes e a comunidade a conhecerem melhor a infraestrutura educacional que Lagarto oferece.
+                    </p>
+                    
+                    <h3 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--dourado); display: inline-block;">Equipe de Desenvolvimento</h3>
                     <div class="team-grid">
                         <div class="team-member">
                             <div class="avatar">JA</div>
                             <h4>José Alexandre</h4>
-                            <p>Gerente</p>
+                            <p>Gerente de Projeto</p>
                         </div>
                         <div class="team-member">
                             <div class="avatar">AR</div>
                             <h4>Arthur Ribeiro</h4>
-                            <p>Dev</p>
+                            <p>Desenvolvedor</p>
                         </div>
                         <div class="team-member">
                             <div class="avatar">GS</div>
                             <h4>Guilherme Silva</h4>
-                            <p>Dev</p>
+                            <p>Desenvolvedor</p>
                         </div>
                         <div class="team-member">
                             <div class="avatar">LE</div>
                             <h4>Luis Eduardo</h4>
-                            <p>Dev</p>
+                            <p>Desenvolvedor</p>
                         </div>
                         <div class="team-member">
                             <div class="avatar">RP</div>
                             <h4>Rauan Phelipe</h4>
-                            <p>Dev</p>
+                            <p>Desenvolvedor</p>
                         </div>
                         <div class="team-member">
                             <div class="avatar">VS</div>
                             <h4>Victor Silva</h4>
-                            <p>Dev</p>
+                            <p>Desenvolvedor</p>
                         </div>
                     </div>
                 </div>
@@ -2045,7 +2163,7 @@
 
     <footer>
         <p>🎓 Ensino Superior em Lagarto</p>
-        <p>© 2026 - Todos os direitos reservados</p>
+        <p>© 2026 - Projeto Acadêmico IFS Sistemas de Informação</p>
     </footer>
 
     <div id="courseModal" class="modal">
@@ -2213,7 +2331,7 @@
             if (navLink) navLink.classList.add('active');
 
             // Remove classes antigas
-            document.body.classList.remove('home-active', 'ufs-active', 'ifs-active');
+            document.body.classList.remove('home-active', 'ufs-active', 'ifs-active', 'privadas-active');
 
             if (pageId === 'ufs') {
                 document.body.classList.add('ufs-active');
@@ -2221,6 +2339,8 @@
                 document.body.classList.add('home-active');
             } else if (pageId === 'ifs') {
                 document.body.classList.add('ifs-active');
+            } else if (pageId === 'privadas') {
+                document.body.classList.add('privadas-active');
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
