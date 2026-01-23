@@ -20,6 +20,8 @@
             --dourado: #fdb714;
             --cinza-escuro: #2d2d2d;
             --branco-vidro: rgba(255, 255, 255, 0.95);
+            --laranja-privadas: #ff6b35;
+            --laranja-privadas-dark: #c44b1f;
         }
 
         body {
@@ -62,6 +64,17 @@
             background-attachment: fixed;
             color: white;
         }
+
+        /* Fundo Faculdades privadas*/
+        body.privadas-active {
+            background: linear-gradient(rgba(255, 107, 53, 0.85), rgba(196, 75, 31, 0.95)),
+                url('images/foto_privadas/entrada.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
 
         /* --- HEADER & NAV --- */
         body.home-active header,
@@ -162,6 +175,12 @@
 
         .btn-ufs {
             background: linear-gradient(135deg, var(--azul-ufs) 0%, var(--azul-ufs-dark) 100%);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn-privadas {
+            background: linear-gradient(135deg, var(--laranja-privadas) 0%, var(--laranja-privadas-dark) 100%);
             color: white;
             border: 2px solid transparent;
         }
@@ -1083,6 +1102,7 @@
             <li><a href="#ufs" class="nav-link" onclick="showPage('ufs')">UFS - Universidade Federal</a></li>
             <li><a href="#galeria" class="nav-link" onclick="showPage('galeria')">Galeria</a></li>
             <li><a href="#sobre" class="nav-link" onclick="showPage('sobre')">Sobre o Projeto</a></li>
+            <li><a href="#privadas" class="nav-link" onclick="showPage('privadas')">Faculdades Privadas</a></li>
         </ul>
     </nav>
 
@@ -1098,7 +1118,7 @@
                 <div class="hero-actions">
                     <button onclick="showPage('ifs')" class="btn-home btn-ifs">Venha Conhecer o IFS ➜</button>
                     <button onclick="showPage('ufs')" class="btn-home btn-ufs">Venha Conhecer a UFS ➜</button>
-                </div>
+                    <button onclick="showPage('privadas')" class="btn-home btn-privadas">Venha Conhecer as Faculdades Privadas ➜</button>                </div>
             </div>
 
             <div class="container" style="padding-top: 0;">
@@ -1662,9 +1682,9 @@
                             </p>
                         </div>
                         <div class="story-img-wrapper"
-                            onclick="openImage('images/foto_ufs/ufs_foto1.jpeg', 'Campus UFS Vista')">
-                            <img src="images/lagarto's adventure/hospital universitario1.jpeg" alt="Campus UFS Vista">
-                            <div class="img-credit">Foto: Elisa Gabriela Pereira Nascimento | 2026</div>
+                            onclick="openImage('images/lagarto adventure/hospital universitario1.jpeg', 'Campus UFS Vista')">
+                            <img src="images/lagarto adventure/hospital universitario1.jpeg" alt="Campus UFS Vista">
+                            <div class="img-credit">Foto: Arthur Ribeiro | 2026</div>
                         </div>
                     </div>
 
@@ -1958,6 +1978,18 @@
             </div>
         </div>
 
+        <div id="privadas" class="page">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <h2 style="border: none; font-size: 3.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom: 0.5rem; color: white;">
+                        🟠 Faculdades Privadas</h2>
+                    <p style="color: white; font-size: 1.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.8);">Ensino Superior Particular em Lagarto</p>
+                </div>
+                
+                <!-- Adicione o conteúdo aqui, seguindo a estrutura das outras páginas -->
+            </div>
+        </div>
+        
         <div id="galeria" class="page">
             <div class="container">
                 <h2>📷 Galeria Fotográfica</h2>
